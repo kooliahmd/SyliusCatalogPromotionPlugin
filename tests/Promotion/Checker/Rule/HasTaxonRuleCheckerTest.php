@@ -70,7 +70,7 @@ class HasTaxonRuleCheckerTest extends TestCase
     public function test_case_eligible()
     {
         $this->promotionRule->setConfiguration(['taxons' => ['taxon_code']]);
-        $hasAttributeValueRuleChecker = new HasTaxonRuleChecker();
+        $hasTaxonRuleChecker = new HasTaxonRuleChecker();
         $this->assertTrue($hasTaxonRuleChecker->isEligible($this->channelPricing, $this->promotionRule->getConfiguration()));
     }
 
