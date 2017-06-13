@@ -2,11 +2,11 @@
 
 namespace Kooli\CatalogPromotion\Promotion\Action;
 
-use Sylius\Component\Promotion\Model\PromotionInterface;
+use Sylius\Component\Promotion\Model\PromotionActionInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Webmozart\Assert\Assert;
 
-class PercentageDiscountPromotionActionCommand extends DiscountPromotionActionCommand
+class PercentageDiscountPromotionActionExecutor extends DiscountPromotionActionExecutor
 {
     protected function isConfigurationValid(array $configuration)
     {
@@ -14,20 +14,20 @@ class PercentageDiscountPromotionActionCommand extends DiscountPromotionActionCo
         Assert::float($configuration['percentage']);
     }
 
-    public function execute(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion)
+    public function execute(PromotionSubjectInterface $subject, PromotionActionInterface $action)
     {
-        if (!isset($configuration[$subject->getChannelCode()])) {
+        if (!isset($action->getConfiguration()[$subject->getChannelCode()])) {
             return false;
         }
         try {
-            $this->isConfigurationValid($configuration[$subject->getChannelCode()]);
+            $this->isConfigurationValid($action->getConfiguration()[$subject->getChannelCode()]);
         } catch (\InvalidArgumentException $exception) {
             return false;
         }
 
         $promotionAmount = $this->calculatePromotionAmount(
             $subject->getPromotionSubjectTotal(),
-            $configuration[$subject->getChannelCode()]['percentage']
+            $action->getConfiguration()[$subject->getChannelCode()]['percentage']
         );
 
         $this->promotionApplicator->apply($subject, $promotionAmount);

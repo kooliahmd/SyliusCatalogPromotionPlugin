@@ -2,13 +2,13 @@
 
 namespace Tests\Kooli\CatalogPromotion\Promotion\Action;
 
-use Kooli\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionCommand;
+use Kooli\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
 use Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
 use Kooli\CatalogPromotion\Model\ProductVariant;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Core\Model\Promotion;
 use Kooli\CatalogPromotion\Model\ChannelPricing;
-use Sylius\Component\Promotion\Model\PromotionAction;
+use Sylius\Component\Promotion\Model\PromotionActionInterface;
 
 class PercentageDiscountPromotionActionCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
      */
     private $channelPricing;
     /**
-     * @var PromotionAction
+     * @var PromotionActionInterface
      */
     private $promotionAction;
     /**
@@ -32,7 +32,7 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
 
         $this->promotion = new Promotion();
 
-        $this->promotionAction = new PromotionAction();
+        $this->promotionAction = $this->createMock(PromotionActionInterface::class);
 
         $this->promotionAction->setPromotion($this->promotion);
 
@@ -42,11 +42,11 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
 
     public function test_applied_promotion_case_percentage_less_than_100()
     {
-        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionCommand(new ChannelPricingPromotionApplicator());
+        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator());
         $this->channelPricing->setPrice(100);
-        $this->promotionAction->setConfiguration(['channel_code' => ['percentage' => 0.30]]);
+        $this->promotionAction->method('getConfiguration')->willReturn(['channel_code' => ['percentage' => 0.30]]);
 
-        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction->getConfiguration(), $this->promotion);
+        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction);
 
         $this->assertEquals(70, $this->channelPricing->getPromotionSubjectTotal());
     }
@@ -54,22 +54,22 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
 
     public function test_applied_promotion_case_unvalid_configuration()
     {
-        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionCommand(new ChannelPricingPromotionApplicator());
+        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator());
         $this->channelPricing->setPrice(100);
-        $this->promotionAction->setConfiguration(['channel_code' => ['percentage' => 'unvalid_config']]);
+        $this->promotionAction->method('getConfiguration')->willReturn(['channel_code' => ['percentage' => 'unvalid_config']]);
 
-        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction->getConfiguration(), $this->promotion);
+        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction);
 
         $this->assertEquals(100, $this->channelPricing->getPromotionSubjectTotal());
     }
 
     public function test_applied_promotion_case_channel_not_configured()
     {
-        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionCommand(new ChannelPricingPromotionApplicator());
+        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator());
         $this->channelPricing->setPrice(100);
-        $this->promotionAction->setConfiguration(['nonexistent_channel' => ['percentage' => 0.3]]);
+        $this->promotionAction->method('getConfiguration')->willReturn(['nonexistent_channel' => ['percentage' => 0.3]]);
 
-        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction->getConfiguration(), $this->promotion);
+        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction);
 
         $this->assertEquals(100, $this->channelPricing->getPromotionSubjectTotal());
     }

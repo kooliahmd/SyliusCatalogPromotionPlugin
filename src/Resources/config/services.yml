@@ -1,0 +1,19 @@
+services:
+  catalog-promotion.processor:
+    class: Kooli\CatalogPromotion\Promotion\Processor
+    arguments:
+      - '@sylius.repository.promotion'
+      - '@sylius.repository.product_variant'
+      - '@catalog-promotion.eligibility-filter'
+      - '@catalog-promotion.channel-pricing-promotion-applicator'
+
+  catalog-promotion.eligibility-filter:
+    class: Kooli\CatalogPromotion\Promotion\PromotionEligibilityFilter
+    arguments:
+      - '@catalog-promotion.has-taxon-rule-checker'
+
+  catalog-promotion.has-taxon-rule-checker:
+    class: Kooli\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
+
+  catalog-promotion.channel-pricing-promotion-applicator:
+    class: Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator

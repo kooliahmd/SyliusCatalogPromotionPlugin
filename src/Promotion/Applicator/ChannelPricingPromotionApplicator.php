@@ -11,6 +11,4 @@ class ChannelPricingPromotionApplicator implements ChannelPricingPromotionApplic
     {
         $channelPricing->setPromotionAmount($channelPricing->getPromotionAmount() + $promotionAmount);
     }
-
-
 }

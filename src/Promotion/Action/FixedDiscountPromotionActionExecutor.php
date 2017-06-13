@@ -2,11 +2,12 @@
 
 namespace Kooli\CatalogPromotion\Promotion\Action;
 
+use Sylius\Component\Promotion\Model\PromotionActionInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Webmozart\Assert\Assert;
 
-class FixedDiscountPromotionActionCommand extends DiscountPromotionActionCommand
+class FixedDiscountPromotionActionExecutor extends DiscountPromotionActionExecutor
 {
 
     /**
@@ -24,21 +25,21 @@ class FixedDiscountPromotionActionCommand extends DiscountPromotionActionCommand
      * @param PromotionInterface $action
      * @return bool
      */
-    public function execute(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $action)
+    public function execute(PromotionSubjectInterface $subject, PromotionActionInterface $action)
     {
-        if (!isset($configuration[$subject->getChannelCode()])) {
+        if (!isset($action->getConfiguration()[$subject->getChannelCode()])) {
             return false;
         }
 
         try {
-            $this->isConfigurationValid($configuration[$subject->getChannelCode()]);
+            $this->isConfigurationValid($action->getConfiguration()[$subject->getChannelCode()]);
         } catch (\InvalidArgumentException $exception) {
             return false;
         }
 
         $promotionAmount = $this->calculatePromotionAmount(
             $subject->getPromotionSubjectTotal(),
-            $configuration[$subject->getChannelCode()]['amount']
+            $action->getConfiguration()[$subject->getChannelCode()]['amount']
         );
 
         $this->promotionApplicator->apply($subject, $promotionAmount);

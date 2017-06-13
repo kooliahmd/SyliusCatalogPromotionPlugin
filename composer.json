@@ -3,6 +3,9 @@
     "sylius/sylius": "v1.0.0-beta.2",
     "webmozart/assert": "*"
   },
+  "config": {
+    "bin-dir": "bin"
+  },
   "autoload": {
     "psr-4": {
       "Kooli\\CatalogPromotion\\": "src",
@@ -10,6 +13,6 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.1"
+    "phpspec/phpspec": "^3.4"
   }
 }
