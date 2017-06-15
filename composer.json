@@ -1,5 +1,5 @@
 {
-  "name": "snaketn/catalogpromotionplugin",
+  "name": "snake-tn/catalog-promotion-plugin",
   "require": {
     "sylius/sylius": "1.0.x-dev",
     "webmozart/assert": "*"
