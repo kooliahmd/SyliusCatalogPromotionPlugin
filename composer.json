@@ -13,16 +13,17 @@
     }
   ],
   "require": {
-    "sylius/sylius": "1.0.x-dev",
-    "webmozart/assert": "*"
+    "sylius/sylius": "^1.0@beta",
+    "webmozart/assert": "*",
+    "symfony/symfony": "<3.3"
   },
   "config": {
     "bin-dir": "bin"
   },
   "autoload": {
     "psr-4": {
-      "": "src",
-      "": "tests"
+      "SnakeTn\\CatalogPromotion\\": "src",
+      "Tests\\SnakeTn\\CatalogPromotion\\": "tests"
     }
   },
   "require-dev": {
