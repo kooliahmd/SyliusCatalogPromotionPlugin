@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of Sylius catalog promotion plugin.
+ * This file is part of catalog promotion plugin for Sylius.
  *
  * (c) Ahmed Kooli
  *
@@ -11,11 +11,11 @@
 namespace Kooli\CatalogPromotion\Promotion\Action;
 
 
+use Kooli\CatalogPromotion\Model\ChannelPricing;
 use Sylius\Component\Promotion\Model\PromotionActionInterface;
-use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 
-interface PromotionActionExecutorInterface
+interface ActionExecutorInterface
 {
-    public function execute(PromotionSubjectInterface $subject, PromotionActionInterface $action);
+    public function execute(ChannelPricing $subject, PromotionActionInterface $action);
 
 }

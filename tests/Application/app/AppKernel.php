@@ -13,6 +13,7 @@ final class AppKernel extends Kernel
             new Kooli\CatalogPromotion\CatalogPromotionPlugin(),
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
+            new \Liip\FunctionalTestBundle\LiipFunctionalTestBundle()
         ]);
     }
 

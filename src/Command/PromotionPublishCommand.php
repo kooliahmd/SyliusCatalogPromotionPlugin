@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Sylius catalog promotion plugin.
+ * This file is part of catalog promotion plugin for Sylius.
  *
  * (c) Ahmed Kooli
  *
@@ -28,8 +28,7 @@ class PromotionPublishCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->write('yes man');
-        $this->getContainer()->get('catalog-promotion.processor')->process();
+//        $this->getContainer()->get('catalog-promotion.processor')->process();
     }
 
 }

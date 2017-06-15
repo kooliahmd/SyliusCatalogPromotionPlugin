@@ -1,0 +1,5 @@
+Sylius\Component\Core\Model\Promotion:
+    promotion1:
+        code: 50_percent_discount_on_video_games
+        name: Play day
+        couponBased: false

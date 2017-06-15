@@ -11,30 +11,24 @@
 
 namespace Tests\Kooli\CatalogPromotion\Command;
 
-use Kooli\CatalogPromotion\Command\PromotionPublishCommand;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Console\Tester\CommandTester;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
-class PromotionPublishCommandTest extends KernelTestCase
+class PromotionPublishCommandTest extends WebTestCase
 {
 
     public function test_execute()
     {
-        $kernel = static::createKernel();
-        $kernel->boot();
+        $this->loadFixtureFiles([
+            $this->getFixturePath('promotions'),
+            $this->getFixturePath('products'),
+        ]);
+        $this->runCommand('sylius:catalog-promotion:publish');
 
-        $application = new Application($kernel);
-        $application->add(new PromotionPublishCommand());
+    }
 
-        $command = $application->find('sylius:catalog-promotion:publish');
-        $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
-            'command' => $command->getName()
-        ));
-
-        $output = $commandTester->getDisplay();
-        $this->assertContains('yes man', $output);
+    public function getFixturePath($fileName)
+    {
+        return $this->getPhpUnitXmlDir() . $_SERVER['FIXTURES_DIR'] . '/' . $fileName . '.yml';
     }
 
 }

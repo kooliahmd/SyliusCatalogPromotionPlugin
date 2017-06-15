@@ -1,7 +1,16 @@
 <?php
+/*
+ * This file is part of catalog promotion plugin for Sylius.
+ *
+ * (c) Ahmed Kooli
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Kooli\CatalogPromotion\Promotion\Action;
 
+use Kooli\CatalogPromotion\Model\ChannelPricing;
 use Sylius\Component\Promotion\Model\PromotionActionInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
@@ -25,7 +34,7 @@ class FixedDiscountPromotionActionExecutor extends DiscountPromotionActionExecut
      * @param PromotionInterface $action
      * @return bool
      */
-    public function execute(PromotionSubjectInterface $subject, PromotionActionInterface $action)
+    public function execute(ChannelPricing $subject, PromotionActionInterface $action)
     {
         if (!isset($action->getConfiguration()[$subject->getChannelCode()])) {
             return false;

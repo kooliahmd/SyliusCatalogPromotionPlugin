@@ -1,6 +1,6 @@
 {
   "require": {
-    "sylius/sylius": "v1.0.0-beta.2",
+    "sylius/sylius": "1.0.x-dev",
     "webmozart/assert": "*"
   },
   "config": {
@@ -13,6 +13,8 @@
     }
   },
   "require-dev": {
-    "phpspec/phpspec": "^3.4"
+    "phpunit/phpunit": "^6.2",
+    "liip/functional-test-bundle": "^1.7",
+    "nelmio/alice": "^2.3"
   }
 }

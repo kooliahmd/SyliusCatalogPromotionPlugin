@@ -1,0 +1,25 @@
+Sylius\Component\Core\Model\Product:
+    product1:
+        fallbackLocale: en_US
+        currentLocale: en
+        code: VIDEO_GAME_PRODUCT_SKU
+
+Sylius\Component\Core\Model\Taxon:
+    video_games:
+        code: "video_games"
+
+Sylius\Component\Core\Model\ProductTaxon:
+    productTaxon1:
+        product: "@product1"
+        taxon: "@video_games"
+        position: 0
+
+Sylius\Component\Core\Model\ProductVariant:
+    productVariant1:
+        code: VIDEO_GAME_VARIANT_SKU
+        product: "@product1"
+        fallbackLocale: en_US
+        currentLocale: en
+
+
+

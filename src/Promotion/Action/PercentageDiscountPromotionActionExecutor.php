@@ -1,20 +1,36 @@
 <?php
+/*
+ * This file is part of catalog promotion plugin for Sylius.
+ *
+ * (c) Ahmed Kooli
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Kooli\CatalogPromotion\Promotion\Action;
 
+use Kooli\CatalogPromotion\Model\ChannelPricing;
 use Sylius\Component\Promotion\Model\PromotionActionInterface;
-use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Webmozart\Assert\Assert;
 
 class PercentageDiscountPromotionActionExecutor extends DiscountPromotionActionExecutor
 {
+    /**
+     * @param array $configuration
+     */
     protected function isConfigurationValid(array $configuration)
     {
         Assert::keyExists($configuration, 'percentage');
         Assert::float($configuration['percentage']);
     }
 
-    public function execute(PromotionSubjectInterface $subject, PromotionActionInterface $action)
+    /**
+     * @param ChannelPricing $subject
+     * @param PromotionActionInterface $action
+     * @return bool
+     */
+    public function execute(ChannelPricing $subject, PromotionActionInterface $action)
     {
         if (!isset($action->getConfiguration()[$subject->getChannelCode()])) {
             return false;

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Sylius catalog promotion plugin.
+ * This file is part of catalog promotion plugin for Sylius.
  *
  * (c) Ahmed Kooli
  *
@@ -16,5 +16,10 @@ use Sylius\Component\Promotion\Model\PromotionRuleInterface;
 
 interface RuleCheckerInterface
 {
+    /**
+     * @param ProductVariantInterface $productVariant
+     * @param PromotionRuleInterface $rule
+     * @return boolean
+     */
     public function isEligible(ProductVariantInterface $productVariant, PromotionRuleInterface $rule);
 }

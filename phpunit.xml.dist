@@ -4,12 +4,10 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.6/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         >
-
-
+>
     <php>
-        <server name="KERNEL_CLASS_PATH" value="/tests/Application/app/AppKernel.php" />
-        <server name="KERNEL_DIR" value="/tests/Application/app" />
+        <server name="FIXTURES_DIR" value="/tests/DataFixtures"/>
+        <server name="KERNEL_DIR" value="/tests/Application/app"/>
     </php>
 
 
