@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\Command;
+namespace SnakeTn\CatalogPromotion\Command;
 
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;

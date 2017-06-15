@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Kooli\CatalogPromotion\Promotion\Checker\Rule;
+namespace Tests\SnakeTn\CatalogPromotion\Promotion\Checker\Rule;
 
-use Kooli\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker;
+use SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductTaxon;

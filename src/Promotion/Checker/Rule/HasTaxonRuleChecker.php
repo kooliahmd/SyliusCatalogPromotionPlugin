@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\Promotion\Checker\Rule;
+namespace SnakeTn\CatalogPromotion\Promotion\Checker\Rule;
 
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Promotion\Model\PromotionRuleInterface;

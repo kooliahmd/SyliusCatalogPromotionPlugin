@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\Promotion\Action;
+namespace SnakeTn\CatalogPromotion\Promotion\Action;
 
 
-use Kooli\CatalogPromotion\Model\ChannelPricing;
+use SnakeTn\CatalogPromotion\Model\ChannelPricing;
 use Sylius\Component\Promotion\Model\PromotionActionInterface;
 
 interface ActionExecutorInterface

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Kooli\CatalogPromotion\Promotion;
+namespace SnakeTn\CatalogPromotion\Promotion;
 
 
 use Sylius\Component\Core\Calculator\ProductVariantPriceCalculatorInterface;

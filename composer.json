@@ -1,5 +1,17 @@
 {
   "name": "snake-tn/catalog-promotion-plugin",
+  "type": "sylius-plugin",
+  "description": "Add catalog promotion to sylius application.",
+  "keywords": [
+    "sylius",
+    "symfony"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ahmed Kooli"
+    }
+  ],
   "require": {
     "sylius/sylius": "1.0.x-dev",
     "webmozart/assert": "*"
@@ -9,8 +21,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Kooli\\CatalogPromotion\\": "src",
-      "Tests\\Kooli\\CatalogPromotion\\": "tests"
+      "": "src",
+      "": "tests"
     }
   },
   "require-dev": {

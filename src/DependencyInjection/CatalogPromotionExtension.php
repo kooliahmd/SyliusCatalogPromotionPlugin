@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\DependencyInjection;
+namespace SnakeTn\CatalogPromotion\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\Promotion;
+namespace SnakeTn\CatalogPromotion\Promotion;
 
-use Kooli\CatalogPromotion\Model\ChannelPricing;
-use Kooli\CatalogPromotion\Promotion\Action\ActionExecutorInterface;
-use Kooli\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
-use Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicatorInterface;
-use Kooli\CatalogPromotion\Promotion\Checker\Rule\RuleCheckerInterface;
+use SnakeTn\CatalogPromotion\Model\ChannelPricing;
+use SnakeTn\CatalogPromotion\Promotion\Action\ActionExecutorInterface;
+use SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
+use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicatorInterface;
+use SnakeTn\CatalogPromotion\Promotion\Checker\Rule\RuleCheckerInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Core\Model\PromotionInterface;

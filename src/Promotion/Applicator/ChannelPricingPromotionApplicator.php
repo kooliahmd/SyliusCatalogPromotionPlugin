@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\Promotion\Applicator;
+namespace SnakeTn\CatalogPromotion\Promotion\Applicator;
 
-use Kooli\CatalogPromotion\Model\ChannelPricing;
+use SnakeTn\CatalogPromotion\Model\ChannelPricing;
 
 class ChannelPricingPromotionApplicator
 {

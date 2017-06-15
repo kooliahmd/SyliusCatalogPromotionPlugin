@@ -10,7 +10,7 @@ final class AppKernel extends Kernel
     public function registerBundles()
     {
         return array_merge(parent::registerBundles(), [
-            new Kooli\CatalogPromotion\CatalogPromotionPlugin(),
+            new SnakeTn\CatalogPromotion\CatalogPromotionPlugin(),
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
             new \Liip\FunctionalTestBundle\LiipFunctionalTestBundle()

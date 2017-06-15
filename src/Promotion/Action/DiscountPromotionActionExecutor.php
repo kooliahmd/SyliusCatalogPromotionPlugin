@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Kooli\CatalogPromotion\Promotion\Action;
+namespace SnakeTn\CatalogPromotion\Promotion\Action;
 
-use Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
+use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
 
 abstract class DiscountPromotionActionExecutor implements ActionExecutorInterface
 {

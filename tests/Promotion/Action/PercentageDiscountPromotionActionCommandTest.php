@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Kooli\CatalogPromotion\Promotion\Action;
+namespace Tests\SnakeTn\CatalogPromotion\Promotion\Action;
 
-use Kooli\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
-use Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
-use Kooli\CatalogPromotion\Model\ProductVariant;
+use SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
+use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
+use SnakeTn\CatalogPromotion\Model\ProductVariant;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Core\Model\Promotion;
-use Kooli\CatalogPromotion\Model\ChannelPricing;
+use SnakeTn\CatalogPromotion\Model\ChannelPricing;
 use Sylius\Component\Promotion\Model\PromotionActionInterface;
 
 class PercentageDiscountPromotionActionCommandTest extends TestCase

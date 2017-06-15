@@ -1,6 +1,6 @@
 <?php
 
-namespace Kooli\CatalogPromotion\Model;
+namespace SnakeTn\CatalogPromotion\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Core\Model\ChannelPricing as BaseChannelPricing;

@@ -1,19 +1,19 @@
 services:
   catalog-promotion.processor:
-    class: Kooli\CatalogPromotion\Promotion\Processor
+    class: SnakeTn\CatalogPromotion\Promotion\Processor
     arguments:
       - '@sylius.repository.promotion'
     calls:
       - [addRuleChecker,['has_taxon','@catalog-promotion.has-taxon-rule-checker']]
 
   catalog-promotion.has-taxon-rule-checker:
-    class: Kooli\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
+    class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
 
   catalog-promotion.channel-pricing-promotion-applicator:
-    class: Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator
+    class: SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator
 
   sylius.calculator.product_variant_price:
-    class: Kooli\CatalogPromotion\Promotion\ProductVariantPriceCalculator
+    class: SnakeTn\CatalogPromotion\Promotion\ProductVariantPriceCalculator
     arguments:
       - '@catalog-promotion.processor'
 

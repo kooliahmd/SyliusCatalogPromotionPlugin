@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Kooli\CatalogPromotion;
+namespace Tests\SnakeTn\CatalogPromotion;
 
-use Kooli\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
-use Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
-use Kooli\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker;
-use Kooli\CatalogPromotion\Promotion\Processor;
-use Kooli\CatalogPromotion\Promotion\ProductVariantPriceCalculator;
+use SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
+use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
+use SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker;
+use SnakeTn\CatalogPromotion\Promotion\Processor;
+use SnakeTn\CatalogPromotion\Promotion\ProductVariantPriceCalculator;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelPricing;
