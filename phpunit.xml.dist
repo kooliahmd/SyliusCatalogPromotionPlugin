@@ -9,6 +9,11 @@
         <server name="FIXTURES_DIR" value="/tests/DataFixtures"/>
         <server name="KERNEL_DIR" value="/tests/Application/app"/>
     </php>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 
 
 </phpunit>

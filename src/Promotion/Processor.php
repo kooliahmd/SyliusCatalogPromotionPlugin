@@ -13,6 +13,7 @@ namespace Kooli\CatalogPromotion\Promotion;
 
 use Kooli\CatalogPromotion\Model\ChannelPricing;
 use Kooli\CatalogPromotion\Promotion\Action\ActionExecutorInterface;
+use Kooli\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
 use Kooli\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicatorInterface;
 use Kooli\CatalogPromotion\Promotion\Checker\Rule\RuleCheckerInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -32,6 +33,10 @@ class Processor
      * @var array|RuleCheckerInterface
      */
     private $ruleCheckers = [];
+    /**
+     * @var array|ActionExecutorInterface
+     */
+    private $actionExecutors = [];
 
     /**
      * @param PromotionRepositoryInterface $promotionRepository
@@ -138,6 +143,15 @@ class Processor
     public function addRuleChecker($ruleCheckerType, RuleCheckerInterface $ruleChecker)
     {
         $this->ruleCheckers[$ruleCheckerType] = $ruleChecker;
+    }
+
+    /**
+     * @param $ruleActionType
+     * @param ActionExecutorInterface $actionExecutor
+     */
+    public function addActionExecutor($ruleActionType, ActionExecutorInterface $actionExecutor)
+    {
+        $this->actionExecutors[$ruleActionType] = $actionExecutor;
     }
 
 
