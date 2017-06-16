@@ -13,11 +13,11 @@ use Sylius\Component\Core\Model\ChannelPricing;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductTaxon;
 use Sylius\Component\Core\Model\ProductVariant;
-use Sylius\Component\Core\Model\Promotion;
 use Sylius\Component\Core\Model\Taxon;
-use Sylius\Component\Core\Repository\PromotionRepositoryInterface;
-use Sylius\Component\Promotion\Model\PromotionAction;
-use Sylius\Component\Promotion\Model\PromotionRule;
+use SnakeTn\CatalogPromotion\Repository\PromotionRepository;
+use SnakeTn\CatalogPromotion\Entity\Promotion;
+use SnakeTn\CatalogPromotion\Entity\PromotionAction;
+use SnakeTn\CatalogPromotion\Entity\PromotionRule;
 
 class ProductVariantPriceCalculatorTest extends TestCase
 {
@@ -32,7 +32,7 @@ class ProductVariantPriceCalculatorTest extends TestCase
 
     public function setUp()
     {
-        $this->promotionRepository = $this->createMock(PromotionRepositoryInterface::class);
+        $this->promotionRepository = $this->createMock(PromotionRepository::class);
         $processor = new Processor($this->promotionRepository);
         $processor->addRuleChecker('has_taxon', new HasTaxonRuleChecker());
         $processor->addActionExecutor('product_variant_percentage_discount', new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator()));
@@ -45,7 +45,7 @@ class ProductVariantPriceCalculatorTest extends TestCase
         $productVariant = $this->getProductVariantHavingMyTaxon();
         $promotion = $this->getPromotion10PercentOnMyTaxon();
 
-        $this->promotionRepository->method('findActive')
+        $this->promotionRepository->method('findActiveByChannel')
             ->willReturn([$promotion]);
 
         $channel = new Channel();

@@ -3,14 +3,13 @@
 namespace SnakeTn\CatalogPromotion\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use SnakeTn\CatalogPromotion\Entity\Promotion;
 use Sylius\Component\Core\Model\ChannelPricing as BaseChannelPricing;
-use Sylius\Component\Promotion\Model\PromotionInterface;
-use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 
-class ChannelPricing extends BaseChannelPricing implements PromotionSubjectInterface
+class ChannelPricing extends BaseChannelPricing
 {
     /**
-     * @var ArrayCollection|\Sylius\Component\Core\Model\PromotionInterface[]
+     * @var ArrayCollection|Promotion
      */
     private $promotions;
     /**
@@ -45,24 +44,5 @@ class ChannelPricing extends BaseChannelPricing implements PromotionSubjectInter
         return $this->getPrice() - $this->getPromotionAmount();
     }
 
-    public function getPromotions()
-    {
-        return $this->promotions;
-    }
-
-    public function hasPromotion(PromotionInterface $promotion)
-    {
-        return !$this->getPromotions()->isEmpty();
-    }
-
-    public function addPromotion(PromotionInterface $promotion)
-    {
-        $this->getPromotions()->add($promotion);
-    }
-
-    public function removePromotion(PromotionInterface $promotion)
-    {
-        // TODO: Implement removePromotion() method.
-    }
 
 }

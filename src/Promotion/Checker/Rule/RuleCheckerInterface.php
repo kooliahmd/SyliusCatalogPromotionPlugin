@@ -12,7 +12,7 @@
 namespace SnakeTn\CatalogPromotion\Promotion\Checker\Rule;
 
 use Sylius\Component\Core\Model\ProductVariantInterface;
-use Sylius\Component\Promotion\Model\PromotionRuleInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionRule;
 
 interface RuleCheckerInterface
 {
@@ -21,5 +21,5 @@ interface RuleCheckerInterface
      * @param PromotionRuleInterface $rule
      * @return boolean
      */
-    public function isEligible(ProductVariantInterface $productVariant, PromotionRuleInterface $rule);
+    public function isEligible(ProductVariantInterface $productVariant, PromotionRule $rule);
 }

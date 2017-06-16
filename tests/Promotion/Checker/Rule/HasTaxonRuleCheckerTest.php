@@ -8,7 +8,7 @@ use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductTaxon;
 use Sylius\Component\Core\Model\ProductVariant;
 use Sylius\Component\Core\Model\Taxon;
-use Sylius\Component\Promotion\Model\PromotionRule;
+use SnakeTn\CatalogPromotion\Entity\PromotionRule;
 
 class HasTaxonRuleCheckerTest extends TestCase
 {

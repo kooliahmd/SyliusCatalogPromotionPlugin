@@ -12,12 +12,12 @@
 namespace SnakeTn\CatalogPromotion\Promotion\Checker\Rule;
 
 use Sylius\Component\Core\Model\ProductVariantInterface;
-use Sylius\Component\Promotion\Model\PromotionRuleInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionRule;
 use Sylius\Component\Core\Model\ProductInterface;
 
 class HasTaxonRuleChecker implements RuleCheckerInterface
 {
-    public function isEligible(ProductVariantInterface $productVariant, PromotionRuleInterface $rule)
+    public function isEligible(ProductVariantInterface $productVariant, PromotionRule $rule)
     {
         return $this->hasProductValidTaxon($productVariant->getProduct(), $rule->getConfiguration());
     }

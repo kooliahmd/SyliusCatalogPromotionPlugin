@@ -2,6 +2,7 @@ services:
   catalog-promotion.processor:
     class: SnakeTn\CatalogPromotion\Promotion\Processor
     arguments:
+      - "@=service('doctrine.orm.entity_manager').getRepository('CatalogPromotionPlugin:Promotion')"
       - '@sylius.repository.promotion'
     calls:
       - [addRuleChecker,['has_taxon','@catalog-promotion.has-taxon-rule-checker']]

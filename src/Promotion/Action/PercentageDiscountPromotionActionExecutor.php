@@ -11,7 +11,7 @@
 namespace SnakeTn\CatalogPromotion\Promotion\Action;
 
 use SnakeTn\CatalogPromotion\Model\ChannelPricing;
-use Sylius\Component\Promotion\Model\PromotionActionInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionAction;
 use Webmozart\Assert\Assert;
 
 class PercentageDiscountPromotionActionExecutor extends DiscountPromotionActionExecutor
@@ -27,10 +27,10 @@ class PercentageDiscountPromotionActionExecutor extends DiscountPromotionActionE
 
     /**
      * @param ChannelPricing $subject
-     * @param PromotionActionInterface $action
+     * @param PromotionAction $action
      * @return bool
      */
-    public function execute(ChannelPricing $subject, PromotionActionInterface $action)
+    public function execute(ChannelPricing $subject, PromotionAction $action)
     {
         if (!isset($action->getConfiguration()[$subject->getChannelCode()])) {
             return false;

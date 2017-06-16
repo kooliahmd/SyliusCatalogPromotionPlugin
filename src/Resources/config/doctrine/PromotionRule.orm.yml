@@ -1,0 +1,17 @@
+SnakeTn\CatalogPromotion\Entity\PromotionRule:
+  type: entity
+  table: catalog_promotion_rule
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    type:
+      type: string
+      length: 255
+    configuration:
+      type: json_array
+  manyToOne:
+    promotion:
+      targetEntity: SnakeTn\CatalogPromotion\Entity\Promotion
+      inversedBy: rules

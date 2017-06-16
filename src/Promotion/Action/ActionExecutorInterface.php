@@ -12,10 +12,10 @@ namespace SnakeTn\CatalogPromotion\Promotion\Action;
 
 
 use SnakeTn\CatalogPromotion\Model\ChannelPricing;
-use Sylius\Component\Promotion\Model\PromotionActionInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionAction;
 
 interface ActionExecutorInterface
 {
-    public function execute(ChannelPricing $subject, PromotionActionInterface $action);
+    public function execute(ChannelPricing $subject, PromotionAction $action);
 
 }

@@ -16,11 +16,12 @@ use SnakeTn\CatalogPromotion\Promotion\Action\ActionExecutorInterface;
 use SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
 use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicatorInterface;
 use SnakeTn\CatalogPromotion\Promotion\Checker\Rule\RuleCheckerInterface;
+use SnakeTn\CatalogPromotion\Repository\PromotionRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
-use Sylius\Component\Core\Model\PromotionInterface;
+use SnakeTn\CatalogPromotion\Entity\Promotion;
 use Sylius\Component\Core\Repository\PromotionRepositoryInterface;
-use Sylius\Component\Promotion\Model\PromotionRuleInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionRule;
 
 class Processor
 {
@@ -42,7 +43,7 @@ class Processor
      * @param PromotionRepositoryInterface $promotionRepository
      */
     public function __construct(
-        PromotionRepositoryInterface $promotionRepository
+        PromotionRepository $promotionRepository
     )
     {
         $this->promotionRepository = $promotionRepository;
@@ -62,7 +63,7 @@ class Processor
         $channelPricing->setChannelCode($channel->getCode());
         $channelPricing->setPrice($productVariant->getChannelPricingForChannel($channel)->getPrice());
 
-        foreach ($this->promotionRepository->findActive() as $promotion) {
+        foreach ($this->promotionRepository->findActiveByChannel($channel) as $promotion) {
 
             if ($this->isEligible($productVariant, $promotion)) {
                 $this->apply($channelPricing, $promotion);
@@ -74,10 +75,10 @@ class Processor
 
     /**
      * @param ProductVariantInterface $productVariant
-     * @param PromotionInterface $promotion
+     * @param Promotion $promotion
      * @return bool
      */
-    private function isEligible(ProductVariantInterface $productVariant, PromotionInterface $promotion)
+    private function isEligible(ProductVariantInterface $productVariant, Promotion $promotion)
     {
         foreach ($promotion->getRules() as $rule) {
             if (!$this->isEligibleToRule($productVariant, $rule)) {
@@ -89,9 +90,9 @@ class Processor
 
     /**
      * @param ChannelPricing $channelPricing
-     * @param PromotionInterface $promotion
+     * @param Promotion $promotion
      */
-    private function apply(ChannelPricing $channelPricing, PromotionInterface $promotion)
+    private function apply(ChannelPricing $channelPricing, Promotion $promotion)
     {
         foreach ($promotion->getActions() as $action) {
             $this->getActionExecutorByActionType($action->getType())->execute($channelPricing, $action);
@@ -100,10 +101,10 @@ class Processor
 
     /**
      * @param ProductVariantInterface $productVariant
-     * @param PromotionRuleInterface $rule
+     * @param PromotionRule $rule
      * @return boolean
      */
-    private function isEligibleToRule(ProductVariantInterface $productVariant, PromotionRuleInterface $rule)
+    private function isEligibleToRule(ProductVariantInterface $productVariant, PromotionRule $rule)
     {
         /** @var RuleCheckerInterface $checker */
         $checker = $this->getRuleCheckerByRuleType($rule->getType());

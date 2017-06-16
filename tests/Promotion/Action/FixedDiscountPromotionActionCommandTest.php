@@ -6,9 +6,9 @@ use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplica
 use SnakeTn\CatalogPromotion\Model\ProductVariant;
 use SnakeTn\CatalogPromotion\Promotion\Action\FixedDiscountPromotionActionExecutor;
 use PHPUnit\Framework\TestCase;
-use Sylius\Component\Core\Model\Promotion;
+use SnakeTn\CatalogPromotion\Entity\Promotion;
 use SnakeTn\CatalogPromotion\Model\ChannelPricing;
-use Sylius\Component\Promotion\Model\PromotionActionInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionAction;
 
 class FixedDiscountPromotionActionCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class FixedDiscountPromotionActionCommandTest extends TestCase
      */
     private $channelPricing;
     /**
-     * @var PromotionActionInterface
+     * @var PromotionAction
      */
     private $promotionAction;
     private $promotion;
@@ -30,7 +30,7 @@ class FixedDiscountPromotionActionCommandTest extends TestCase
 
         $this->promotion = new Promotion();
 
-        $this->promotionAction = $this->createMock(PromotionActionInterface::class);
+        $this->promotionAction = $this->createMock(PromotionAction::class);
 
         $this->promotionAction->setPromotion($this->promotion);
 

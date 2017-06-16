@@ -1,0 +1,55 @@
+SnakeTn\CatalogPromotion\Entity\Promotion:
+  type: entity
+  repositoryClass: SnakeTn\CatalogPromotion\Repository\PromotionRepository
+  table: catalog_promotion
+  id:
+    id:
+      type: integer
+      generator: {strategy: AUTO}
+  fields:
+    code:
+      type: string
+      length: 255
+      unique: true
+    name:
+      type: string
+      length: 255
+    description:
+      type: string
+      length: 255
+      nullable: true
+    priority:
+      type: integer
+    exclusive:
+      type: boolean
+    startsAt:
+      type: datetime
+      column: starts_at
+    endsAt:
+      type: datetime
+      column: ends_at
+    createdAt:
+      type: datetime
+      column: created_at
+    updatedAt:
+      type: datetime
+      column: updated_at
+  manyToMany:
+    channels:
+      targetEntity: Sylius\Component\Channel\Model\ChannelInterface
+      joinTable:
+        name: catalog_promotion_channels
+        joinColumns:
+          promotion_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+            channel_id:
+              referencedColumnName: id
+  oneToMany:
+    actions:
+      targetEntity: SnakeTn\CatalogPromotion\Entity\PromotionAction
+      mappedBy: promotion
+    rules:
+      targetEntity: SnakeTn\CatalogPromotion\Entity\PromotionRule
+      mappedBy: promotion
+

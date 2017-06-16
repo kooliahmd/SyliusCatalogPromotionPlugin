@@ -6,9 +6,9 @@ use SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionE
 use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
 use SnakeTn\CatalogPromotion\Model\ProductVariant;
 use PHPUnit\Framework\TestCase;
-use Sylius\Component\Core\Model\Promotion;
+use SnakeTn\CatalogPromotion\Entity\Promotion;
 use SnakeTn\CatalogPromotion\Model\ChannelPricing;
-use Sylius\Component\Promotion\Model\PromotionActionInterface;
+use SnakeTn\CatalogPromotion\Entity\PromotionAction;
 
 class PercentageDiscountPromotionActionCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
      */
     private $channelPricing;
     /**
-     * @var PromotionActionInterface
+     * @var PromotionAction
      */
     private $promotionAction;
     /**
@@ -32,7 +32,7 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
 
         $this->promotion = new Promotion();
 
-        $this->promotionAction = $this->createMock(PromotionActionInterface::class);
+        $this->promotionAction = $this->createMock(PromotionAction::class);
 
         $this->promotionAction->setPromotion($this->promotion);
 
