@@ -1,8 +1,6 @@
 <?php
 
-
 namespace SnakeTn\CatalogPromotion\Promotion;
-
 
 use Sylius\Component\Core\Calculator\ProductVariantPriceCalculatorInterface;
 use Sylius\Component\Core\Exception\MissingChannelConfigurationException;
@@ -11,15 +9,16 @@ use Webmozart\Assert\Assert;
 
 class ProductVariantPriceCalculator implements ProductVariantPriceCalculatorInterface
 {
+    /**
+     * @var Processor
+     */
+    private $promotionProcessor;
 
     public function __construct(Processor $promotionProcessor)
     {
         $this->promotionProcessor = $promotionProcessor;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function calculate(ProductVariantInterface $productVariant, array $context)
     {
         Assert::keyExists($context, 'channel');

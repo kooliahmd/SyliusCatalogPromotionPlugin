@@ -17,6 +17,7 @@ class PromotionRepository extends EntityRepository
             ->setParameter('channel', $channel)
             ->setParameter('date',  new \DateTime())
             ->addOrderBy('o.priority', 'DESC')
+            ->getQuery()
             ->getResult();
     }
 }
