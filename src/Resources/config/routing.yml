@@ -1,0 +1,11 @@
+sylius_admin_catalog_promotion:
+    resource: |
+        alias: app.catalog_promotion
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: update
+        grid: catalog_promotion_admin
+        permission: true
+
+    type: sylius.resource

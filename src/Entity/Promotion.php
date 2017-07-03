@@ -3,8 +3,9 @@
 namespace SnakeTn\CatalogPromotion\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-class Promotion
+class Promotion implements ResourceInterface
 {
     private $id;
     private $code;
@@ -16,6 +17,82 @@ class Promotion
     private $endsAt;
     private $createdAt;
     private $updatedAt;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isExclusive()
+    {
+        return $this->exclusive;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartsAt()
+    {
+        return $this->startsAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndsAt()
+    {
+        return $this->endsAt;
+    }
+
+    /**
+     * @return \Sylius\Component\Core\Model\ChannelPricingInterface[]
+     */
+    public function getChannels()
+    {
+        return $this->channels;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
 
     /**
      * @var \Sylius\Component\Core\Model\ChannelPricingInterface[]
@@ -65,7 +142,6 @@ class Promotion
     {
         return $this->rules;
     }
-
 
 
 }

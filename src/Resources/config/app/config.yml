@@ -1,0 +1,8 @@
+sylius_resource:
+    resources:
+        app.catalog_promotion:
+            driver: doctrine/orm
+            classes:
+                model: SnakeTn\CatalogPromotion\Entity\Promotion
+imports:
+    - { resource: "@CatalogPromotionPlugin/Resources/config/grids/promotions.yml" }
