@@ -34,6 +34,7 @@ SnakeTn\CatalogPromotion\Entity\Promotion:
     updatedAt:
       type: datetime
       column: updated_at
+      nullable: true
   manyToMany:
     channels:
       targetEntity: Sylius\Component\Channel\Model\ChannelInterface

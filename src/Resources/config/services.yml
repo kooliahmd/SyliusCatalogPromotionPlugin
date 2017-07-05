@@ -23,3 +23,16 @@ services:
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
+  catalog-promotion.form.type.promotion:
+      class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
+      tags:
+          - { name: form.type }
+      arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
+
+
+  catalog-promotion.form.type.promotion_rule.collection:
+      class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
+      tags:
+          - { name: form.type }
+      arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
+

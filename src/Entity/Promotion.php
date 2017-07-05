@@ -3,10 +3,13 @@
 namespace SnakeTn\CatalogPromotion\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TimestampableTrait;
 
-class Promotion implements ResourceInterface
+class Promotion implements ResourceInterface , CodeAwareInterface
 {
+    use TimestampableTrait;
     private $id;
     private $code;
     private $name;
@@ -15,8 +18,31 @@ class Promotion implements ResourceInterface
     private $exclusive;
     private $startsAt;
     private $endsAt;
-    private $createdAt;
-    private $updatedAt;
+
+    /**
+     * @var \Sylius\Component\Core\Model\ChannelPricingInterface[]
+     */
+    private $channels;
+
+    /**
+     * @var ArrayCollection|PromotionAction[]
+     */
+    private $actions;
+
+    /**
+     * @var ArrayCollection|PromotionRule[]
+     */
+    private $rules;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->channels = new ArrayCollection();
+        $this->rules = new ArrayCollection();
+        $this->actions = new ArrayCollection();
+    }
+
+
 
     /**
      * @return mixed
@@ -94,29 +120,6 @@ class Promotion implements ResourceInterface
 
 
 
-    /**
-     * @var \Sylius\Component\Core\Model\ChannelPricingInterface[]
-     */
-    private $channels;
-
-    /**
-     * @var ArrayCollection|PromotionAction[]
-     */
-    private $actions;
-
-    /**
-     * @var ArrayCollection|PromotionRule[]
-     */
-    private $rules;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-        $this->channels = new ArrayCollection();
-        $this->rules = new ArrayCollection();
-        $this->actions = new ArrayCollection();
-    }
-
     public function addAction(PromotionAction $action)
     {
         $this->actions->add($action);
@@ -142,6 +145,63 @@ class Promotion implements ResourceInterface
     {
         return $this->rules;
     }
+
+    /**
+     * @param mixed $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @param mixed $exclusive
+     */
+    public function setExclusive($exclusive)
+    {
+        $this->exclusive = $exclusive;
+    }
+
+    /**
+     * @param mixed $startsAt
+     */
+    public function setStartsAt($startsAt)
+    {
+        $this->startsAt = $startsAt;
+    }
+
+    /**
+     * @param mixed $endsAt
+     */
+    public function setEndsAt($endsAt)
+    {
+        $this->endsAt = $endsAt;
+    }
+
+    /**
+     * @param mixed $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
 
 
 }
