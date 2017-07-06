@@ -1,0 +1,12 @@
+services:
+  catalog-promotion.form.type.promotion:
+        class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
+        tags:
+            - { name: form.type }
+        arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
+
+  catalog-promotion.form.type.promotion_rule.collection:
+      class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleCollectionType
+      tags:
+          - { name: form.type }
+      arguments: ['@sylius.registry_promotion_rule_checker']

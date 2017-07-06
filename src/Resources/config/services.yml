@@ -1,3 +1,6 @@
+imports:
+  - { resource: "forms.yml" }
+
 services:
   catalog-promotion.processor:
     class: SnakeTn\CatalogPromotion\Promotion\Processor
@@ -9,6 +12,11 @@ services:
 
   catalog-promotion.has-taxon-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
+    tags: [{name: catalog-promotion.rule-checker, type: has_taxon, label: Has taxon, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
+
+  catalog-promotion.has-taxon-rule-checker2:
+    class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
+    tags: [{name: catalog-promotion.rule-checker, type: has_taxon2, label: Has taxon2, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
 
   catalog-promotion.channel-pricing-promotion-applicator:
     class: SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator
@@ -23,16 +31,17 @@ services:
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
-  catalog-promotion.form.type.promotion:
-      class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
-      tags:
-          - { name: form.type }
-      arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
+  catalog-promotion.form.type.promotion_rule_choice:
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleChoiceType
+    arguments: [%catalog-promotion.promotion_rules%]
+    tags:
+      - { name: form.type}
 
-
-  catalog-promotion.form.type.promotion_rule.collection:
-      class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
-      tags:
-          - { name: form.type }
-      arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
-
+  catalog-promotion.form.type.promotion_rule:
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleType
+    arguments:
+      - SnakeTn\CatalogPromotion\Entity\PromotionRule
+      - [sylius]
+      - '@sylius.form_registry.promotion_rule_checker'
+    tags:
+      - { name: form.type}
