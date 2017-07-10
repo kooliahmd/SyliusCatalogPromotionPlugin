@@ -12,11 +12,20 @@ services:
 
   catalog-promotion.has-taxon-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
-    tags: [{name: catalog-promotion.rule-checker, type: has_taxon, label: Has taxon, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
+    tags: [{name: catalog-promotion.rule-checker, type: has_taxon, label: Has at least one from taxons, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
 
-  catalog-promotion.has-taxon-rule-checker2:
-    class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
-    tags: [{name: catalog-promotion.rule-checker, type: has_taxon2, label: Has taxon2, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
+  catalog-promotion.has-option-rule-checker:
+    class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasOptionRuleChecker
+    tags: [{name: catalog-promotion.rule-checker, type: has_option, label: Has at least one from option values, form-type: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueType}]
+
+  catalog-promotion.registry_promotion_rule_checker:
+    class: Sylius\Component\Registry\ServiceRegistry
+    arguments:
+      - SnakeTn\CatalogPromotion\Promotion\Checker\Rule\RuleCheckerInterface
+      - rule checker
+
+  catalog-promotion.form_registry.promotion_rule_checker:
+    class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry
 
   catalog-promotion.channel-pricing-promotion-applicator:
     class: SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator
@@ -34,14 +43,5 @@ services:
   catalog-promotion.form.type.promotion_rule_choice:
     class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleChoiceType
     arguments: [%catalog-promotion.promotion_rules%]
-    tags:
-      - { name: form.type}
-
-  catalog-promotion.form.type.promotion_rule:
-    class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleType
-    arguments:
-      - SnakeTn\CatalogPromotion\Entity\PromotionRule
-      - [sylius]
-      - '@sylius.form_registry.promotion_rule_checker'
     tags:
       - { name: form.type}
