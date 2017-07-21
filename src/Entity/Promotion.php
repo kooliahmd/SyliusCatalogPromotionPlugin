@@ -7,7 +7,7 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
-class Promotion implements ResourceInterface , CodeAwareInterface
+class Promotion implements ResourceInterface, CodeAwareInterface
 {
     use TimestampableTrait;
     private $id;
@@ -41,7 +41,6 @@ class Promotion implements ResourceInterface , CodeAwareInterface
         $this->rules = new ArrayCollection();
         $this->actions = new ArrayCollection();
     }
-
 
 
     /**
@@ -109,7 +108,6 @@ class Promotion implements ResourceInterface , CodeAwareInterface
     }
 
 
-
     /**
      * @return mixed
      */
@@ -119,15 +117,28 @@ class Promotion implements ResourceInterface , CodeAwareInterface
     }
 
 
-
     public function addAction(PromotionAction $action)
     {
         $this->actions->add($action);
     }
 
+
+    public function removeAction(PromotionAction $action)
+    {
+        $action->setPromotion(null);
+        $this->actions->removeElement($action);
+    }
+
     public function addRule(PromotionRule $rule)
     {
         $this->rules->add($rule);
+    }
+
+
+    public function removeRule(PromotionRule $rule)
+    {
+        $rule->setPromotion(null);
+        $this->rules->removeElement($rule);
     }
 
     /**
@@ -201,7 +212,6 @@ class Promotion implements ResourceInterface , CodeAwareInterface
     {
         $this->priority = $priority;
     }
-
 
 
 }

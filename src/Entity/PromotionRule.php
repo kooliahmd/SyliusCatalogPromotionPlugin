@@ -24,7 +24,7 @@ class PromotionRule
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->type;
     }
@@ -32,7 +32,7 @@ class PromotionRule
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -40,7 +40,7 @@ class PromotionRule
     /**
      * @return array
      */
-    public function getConfiguration(): array
+    public function getConfiguration()
     {
         return $this->configuration;
     }
@@ -48,7 +48,7 @@ class PromotionRule
     /**
      * @param array $configuration
      */
-    public function setConfiguration(array $configuration)
+    public function setConfiguration( $configuration)
     {
         $this->configuration = $configuration;
     }

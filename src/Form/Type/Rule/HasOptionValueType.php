@@ -14,7 +14,7 @@ class HasOptionValueType extends AbstractType
 
         $builder
             ->add('options', OptionAutocompleteChoiceType::class, [
-                'label' => 'sylius.form.promotion_rule.has_option.options',
+                'label' => 'Option value',
                 'multiple' => true,
             ]);
 

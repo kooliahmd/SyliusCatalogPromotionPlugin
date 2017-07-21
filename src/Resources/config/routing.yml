@@ -2,10 +2,24 @@ sylius_admin_catalog_promotion:
     resource: |
         alias: app.catalog_promotion
         section: admin
-        templates: SyliusAdminBundle:Crud
+        templates: CatalogPromotionPlugin:Crud
         except: ['show']
         redirect: update
         grid: catalog_promotion_admin
         permission: true
 
     type: sylius.resource
+
+sylius_admin_ajax_option_by_name_phrase:
+    path: /ajax/options/search
+    methods: [GET]
+    defaults:
+        _format: json
+        _controller: sylius.controller.product_option_value:indexAction
+        _sylius:
+            serialization_groups: [Default]
+            repository:
+                method: findAll
+                arguments:
+                    phrase: $phrase
+                    locale: expr:service('sylius.context.locale').getLocaleCode()

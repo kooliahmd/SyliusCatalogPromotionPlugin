@@ -1,0 +1,3 @@
+{% block catalog_promotion_option_autocomplete_choice_row %}
+    {{ form_row(form, {'remote_url': path('sylius_admin_ajax_option_by_name_phrase'), 'load_edit_url': path('sylius_admin_ajax_taxon_by_code')}) }}
+{% endblock %}

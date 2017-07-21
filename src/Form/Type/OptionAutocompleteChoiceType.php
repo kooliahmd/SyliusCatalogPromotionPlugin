@@ -25,7 +25,7 @@ class OptionAutocompleteChoiceType extends AbstractType
     {
         $resolver->setDefaults([
             'resource' => 'sylius.taxon',
-            'choice_name' => 'name',
+            'choice_name' => 'code',
             'choice_value' => 'code',
         ]);
     }
@@ -44,7 +44,7 @@ class OptionAutocompleteChoiceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'sylius_option_autocomplete_choice';
+        return 'catalog_promotion_option_autocomplete_choice';
     }
 
     /**

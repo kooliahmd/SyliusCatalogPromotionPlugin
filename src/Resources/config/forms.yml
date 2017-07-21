@@ -19,3 +19,4 @@ services:
       - '@catalog-promotion.form_registry.promotion_rule_checker'
     tags:
       - { name: form.type}
+
