@@ -18,13 +18,37 @@ services:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasOptionRuleChecker
     tags: [{name: catalog-promotion.rule-checker, type: has_option, label: Has at least one from option values, form-type: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueType}]
 
+  catalog-promotion.fixed-discount-action-executor:
+    class: SnakeTn\CatalogPromotion\Promotion\Action\FixedDiscountPromotionActionExecutor
+    arguments:
+      - "@catalog-promotion.channel-pricing-promotion-applicator"
+    tags: [{name: catalog-promotion.action-executor, type: fixed_discount, label: Fixed discount, form-type: Sylius\Bundle\PromotionBundle\Form\Type\Action\ChannelBasedFixedDiscountConfigurationType}]
+
+  catalog-promotion.percentage-discount-action-executor:
+    class: SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor
+    arguments:
+      - "@catalog-promotion.channel-pricing-promotion-applicator"
+    tags: [{name: catalog-promotion.action-executor, type: percentage_discount, label: Percentage discount, form-type: Sylius\Bundle\PromotionBundle\Form\Type\Action\PercentageDiscountConfigurationType}]
+
+
+
+
   catalog-promotion.registry_promotion_rule_checker:
     class: Sylius\Component\Registry\ServiceRegistry
     arguments:
       - SnakeTn\CatalogPromotion\Promotion\Checker\Rule\RuleCheckerInterface
       - rule checker
 
+  catalog-promotion.registry_promotion_action_executor:
+    class: Sylius\Component\Registry\ServiceRegistry
+    arguments:
+      - SnakeTn\CatalogPromotion\Promotion\Action\ActionExecutorInterface
+      - action executor
+
   catalog-promotion.form_registry.promotion_rule_checker:
+    class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry
+
+  catalog-promotion.form_registry.promotion_action_executor:
     class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry
 
   catalog-promotion.channel-pricing-promotion-applicator:
@@ -43,5 +67,11 @@ services:
   catalog-promotion.form.type.promotion_rule_choice:
     class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleChoiceType
     arguments: [%catalog-promotion.promotion_rules%]
+    tags:
+      - { name: form.type}
+
+  catalog-promotion.form.type.promotion_action_choice:
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionActionChoiceType
+    arguments: [%catalog-promotion.promotion_actions%]
     tags:
       - { name: form.type}

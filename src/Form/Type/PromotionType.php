@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Sylius\Bundle\PromotionBundle\Form\Type\PromotionActionCollectionType;
 
 final class PromotionType extends AbstractResourceType
 {

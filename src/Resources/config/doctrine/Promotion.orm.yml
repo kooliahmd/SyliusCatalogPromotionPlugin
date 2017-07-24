@@ -50,7 +50,9 @@ SnakeTn\CatalogPromotion\Entity\Promotion:
     actions:
       targetEntity: SnakeTn\CatalogPromotion\Entity\PromotionAction
       mappedBy: promotion
+      cascade: ["all"]
     rules:
       targetEntity: SnakeTn\CatalogPromotion\Entity\PromotionRule
       mappedBy: promotion
+      cascade: ["all"]
 

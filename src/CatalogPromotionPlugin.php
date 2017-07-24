@@ -2,6 +2,7 @@
 
 namespace SnakeTn\CatalogPromotion;
 
+use SnakeTn\CatalogPromotion\DependencyInjection\Compiler\RegisterActionExecutorsPass;
 use SnakeTn\CatalogPromotion\DependencyInjection\Compiler\RegisterRuleCheckersPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,5 +16,6 @@ final class CatalogPromotionPlugin extends Bundle
     {
         parent::build($container);
         $container->addCompilerPass(new RegisterRuleCheckersPass());
+        $container->addCompilerPass(new RegisterActionExecutorsPass());
     }
 }

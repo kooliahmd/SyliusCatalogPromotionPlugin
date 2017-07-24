@@ -11,12 +11,27 @@ services:
           - { name: form.type }
       arguments: ['@catalog-promotion.registry_promotion_rule_checker']
 
+  catalog-promotion.form.type.promotion_action.collection:
+      class: SnakeTn\CatalogPromotion\Form\Type\PromotionActionCollectionType
+      tags:
+          - { name: form.type }
+      arguments: ['@catalog-promotion.registry_promotion_action_executor']
+
   catalog-promotion.form.type.promotion_rule:
     class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleType
     arguments:
       - SnakeTn\CatalogPromotion\Entity\PromotionRule
       - [sylius]
       - '@catalog-promotion.form_registry.promotion_rule_checker'
+    tags:
+      - { name: form.type}
+
+  catalog-promotion.form.type.promotion_action:
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionActionType
+    arguments:
+      - SnakeTn\CatalogPromotion\Entity\PromotionAction
+      - [sylius]
+      - '@catalog-promotion.form_registry.promotion_action_executor'
     tags:
       - { name: form.type}
 

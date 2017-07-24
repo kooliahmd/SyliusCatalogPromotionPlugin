@@ -28,7 +28,7 @@ class PromotionAction
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->type;
     }
@@ -36,7 +36,7 @@ class PromotionAction
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -44,7 +44,7 @@ class PromotionAction
     /**
      * @return array
      */
-    public function getConfiguration(): array
+    public function getConfiguration()
     {
         return $this->configuration;
     }
@@ -52,7 +52,7 @@ class PromotionAction
     /**
      * @param array $configuration
      */
-    public function setConfiguration(array $configuration)
+    public function setConfiguration($configuration)
     {
         $this->configuration = $configuration;
     }
