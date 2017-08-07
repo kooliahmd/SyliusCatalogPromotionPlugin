@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ahmed
- * Date: 7/10/17
- * Time: 4:39 PM
- */
 
 namespace SnakeTn\CatalogPromotion\Form\Type;
 
@@ -24,7 +18,7 @@ class OptionAutocompleteChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'resource' => 'sylius.taxon',
+            'resource' => 'sylius.product_option_value',
             'choice_name' => 'code',
             'choice_value' => 'code',
         ]);

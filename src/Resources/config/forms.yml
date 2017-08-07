@@ -1,21 +1,31 @@
 services:
   catalog-promotion.form.type.promotion:
-        class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
-        tags:
-            - { name: form.type }
-        arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionType
+    tags:
+        - { name: form.type }
+    arguments: ['SnakeTn\CatalogPromotion\Entity\Promotion']
 
   catalog-promotion.form.type.promotion_rule.collection:
-      class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleCollectionType
-      tags:
-          - { name: form.type }
-      arguments: ['@catalog-promotion.registry_promotion_rule_checker']
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleCollectionType
+    tags:
+        - { name: form.type }
+    arguments: ['@catalog-promotion.registry_promotion_rule_checker']
 
   catalog-promotion.form.type.promotion_action.collection:
-      class: SnakeTn\CatalogPromotion\Form\Type\PromotionActionCollectionType
-      tags:
-          - { name: form.type }
-      arguments: ['@catalog-promotion.registry_promotion_action_executor']
+    class: SnakeTn\CatalogPromotion\Form\Type\PromotionActionCollectionType
+    tags:
+        - { name: form.type }
+    arguments: ['@catalog-promotion.registry_promotion_action_executor']
+
+  catalog-promotion-form.type.has_option_value_configuration_type:
+    class: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueConfigurationType
+    tags:
+        - { name: form.type }
+    arguments: ['@catalog-promotion.form.type.data_transformer.option_values_to_codes']
+
+  catalog-promotion.form.type.data_transformer.option_values_to_codes:
+    class: SnakeTn\CatalogPromotion\Form\DataTransformer\OptionValuesToCodesTransformer
+    arguments: ['@sylius.repository.product_option_value']
 
   catalog-promotion.form.type.promotion_rule:
     class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleType

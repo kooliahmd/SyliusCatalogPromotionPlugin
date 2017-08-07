@@ -16,7 +16,7 @@ services:
 
   catalog-promotion.has-option-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasOptionRuleChecker
-    tags: [{name: catalog-promotion.rule-checker, type: has_option, label: Has at least one from option values, form-type: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueType}]
+    tags: [{name: catalog-promotion.rule-checker, type: has_option, label: Has at least one from option values, form-type: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueConfigurationType}]
 
   catalog-promotion.fixed-discount-action-executor:
     class: SnakeTn\CatalogPromotion\Promotion\Action\FixedDiscountPromotionActionExecutor

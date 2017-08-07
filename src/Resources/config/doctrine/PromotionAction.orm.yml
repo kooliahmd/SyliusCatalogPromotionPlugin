@@ -15,3 +15,6 @@ SnakeTn\CatalogPromotion\Entity\PromotionAction:
     promotion:
       targetEntity: SnakeTn\CatalogPromotion\Entity\Promotion
       inversedBy: actions
+      joinColumn:
+        name: promotion_id
+        referencedColumnName: id

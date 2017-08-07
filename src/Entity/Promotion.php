@@ -120,6 +120,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     public function addAction(PromotionAction $action)
     {
         $this->actions->add($action);
+        $action->setPromotion($this);
     }
 
 
@@ -132,6 +133,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     public function addRule(PromotionRule $rule)
     {
         $this->rules->add($rule);
+        $rule->setPromotion($this);
     }
 
 

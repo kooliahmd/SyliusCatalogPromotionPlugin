@@ -3,7 +3,9 @@
 namespace SnakeTn\CatalogPromotion\Entity;
 
 
-class PromotionAction
+use Sylius\Component\Promotion\Model\ConfigurablePromotionElementInterface;
+
+class PromotionAction implements ConfigurablePromotionElementInterface
 {
     /**
      * @var integer
@@ -24,6 +26,14 @@ class PromotionAction
      * @var Promotion
      */
     private $promotion;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return string

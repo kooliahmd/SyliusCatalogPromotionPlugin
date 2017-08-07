@@ -2,8 +2,13 @@
 
 namespace SnakeTn\CatalogPromotion\Entity;
 
-class PromotionRule
+use Sylius\Component\Promotion\Model\ConfigurablePromotionElementInterface;
+
+class PromotionRule implements ConfigurablePromotionElementInterface
 {
+    /**
+     * @var integer
+     */
     private $id;
 
     /**
@@ -20,6 +25,14 @@ class PromotionRule
      * @var Promotion
      */
     private $promotion;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return string
@@ -48,7 +61,7 @@ class PromotionRule
     /**
      * @param array $configuration
      */
-    public function setConfiguration( $configuration)
+    public function setConfiguration($configuration)
     {
         $this->configuration = $configuration;
     }

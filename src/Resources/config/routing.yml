@@ -7,6 +7,13 @@ sylius_admin_catalog_promotion:
         redirect: update
         grid: catalog_promotion_admin
         permission: true
+        vars:
+          all:
+            subheader: sylius.ui.manage_discounts_and_promotional_campaigns
+            templates:
+              form: "CatalogPromotionPlugin::_form.html.twig"
+          index:
+            icon: in cart
 
     type: sylius.resource
 
