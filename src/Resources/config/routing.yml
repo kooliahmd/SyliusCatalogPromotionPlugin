@@ -17,6 +17,18 @@ sylius_admin_catalog_promotion:
 
     type: sylius.resource
 
+sylius_admin_ajax_option_by_code:
+    path: /option_leaf
+    methods: [GET]
+    defaults:
+        _format: json
+        _controller: sylius.controller.product_option_value:indexAction
+        _sylius:
+            serialization_groups: [Default]
+            repository:
+                method: findBy
+                arguments: [code: $code]
+
 sylius_admin_ajax_option_by_name_phrase:
     path: /ajax/options/search
     methods: [GET]

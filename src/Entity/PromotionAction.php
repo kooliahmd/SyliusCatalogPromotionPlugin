@@ -70,7 +70,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @return Promotion
      */
-    public function getPromotion(): Promotion
+    public function getPromotion()
     {
         return $this->promotion;
     }
@@ -78,7 +78,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @param Promotion $promotion
      */
-    public function setPromotion(Promotion $promotion)
+    public function setPromotion(Promotion $promotion = null)
     {
         $this->promotion = $promotion;
     }

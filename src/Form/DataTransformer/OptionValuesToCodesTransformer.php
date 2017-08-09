@@ -16,9 +16,6 @@ class OptionValuesToCodesTransformer implements DataTransformerInterface
 
     public function transform($value)
     {
-        $value = array ('mug_type_monster'
-
-        );
         if (!is_array($value) && !is_null($value)) {
             throw new UnexpectedTypeException($value, 'array');
         }

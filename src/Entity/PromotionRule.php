@@ -69,7 +69,7 @@ class PromotionRule implements ConfigurablePromotionElementInterface
     /**
      * @return Promotion
      */
-    public function getPromotion(): Promotion
+    public function getPromotion()
     {
         return $this->promotion;
     }
@@ -77,7 +77,7 @@ class PromotionRule implements ConfigurablePromotionElementInterface
     /**
      * @param Promotion $promotion
      */
-    public function setPromotion(Promotion $promotion)
+    public function setPromotion(Promotion $promotion = null)
     {
         $this->promotion = $promotion;
     }
