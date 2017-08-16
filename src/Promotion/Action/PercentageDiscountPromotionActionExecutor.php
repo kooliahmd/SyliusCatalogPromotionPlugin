@@ -32,18 +32,16 @@ class PercentageDiscountPromotionActionExecutor extends DiscountPromotionActionE
      */
     public function execute(ChannelPricing $subject, PromotionAction $action)
     {
-        if (!isset($action->getConfiguration()[$subject->getChannelCode()])) {
-            return false;
-        }
+
         try {
-            $this->isConfigurationValid($action->getConfiguration()[$subject->getChannelCode()]);
+            $this->isConfigurationValid($action->getConfiguration());
         } catch (\InvalidArgumentException $exception) {
             return false;
         }
 
         $promotionAmount = $this->calculatePromotionAmount(
             $subject->getPromotionSubjectTotal(),
-            $action->getConfiguration()[$subject->getChannelCode()]['percentage']
+            $action->getConfiguration()['percentage']
         );
 
         $this->promotionApplicator->apply($subject, $promotionAmount);

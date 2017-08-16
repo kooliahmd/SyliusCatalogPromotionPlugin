@@ -44,7 +44,7 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
     {
         $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator());
         $this->channelPricing->setPrice(100);
-        $this->promotionAction->method('getConfiguration')->willReturn(['channel_code' => ['percentage' => 0.30]]);
+        $this->promotionAction->method('getConfiguration')->willReturn(['percentage' => 0.30]);
 
         $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction);
 
@@ -56,23 +56,11 @@ class PercentageDiscountPromotionActionCommandTest extends TestCase
     {
         $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator());
         $this->channelPricing->setPrice(100);
-        $this->promotionAction->method('getConfiguration')->willReturn(['channel_code' => ['percentage' => 'unvalid_config']]);
+        $this->promotionAction->method('getConfiguration')->willReturn(['percentage' => 'unvalid_config']);
 
         $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction);
 
         $this->assertEquals(100, $this->channelPricing->getPromotionSubjectTotal());
     }
-
-    public function test_applied_promotion_case_channel_not_configured()
-    {
-        $percentageDiscountPromotionActionCommand = new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator());
-        $this->channelPricing->setPrice(100);
-        $this->promotionAction->method('getConfiguration')->willReturn(['nonexistent_channel' => ['percentage' => 0.3]]);
-
-        $percentageDiscountPromotionActionCommand->execute($this->channelPricing, $this->promotionAction);
-
-        $this->assertEquals(100, $this->channelPricing->getPromotionSubjectTotal());
-    }
-
 
 }

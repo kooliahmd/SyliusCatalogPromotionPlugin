@@ -7,8 +7,6 @@ services:
     arguments:
       - "@=service('doctrine.orm.entity_manager').getRepository('CatalogPromotionPlugin:Promotion')"
       - '@sylius.repository.promotion'
-    calls:
-      - [addRuleChecker,['has_taxon','@catalog-promotion.has-taxon-rule-checker']]
 
   catalog-promotion.has-taxon-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker

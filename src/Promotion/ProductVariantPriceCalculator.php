@@ -25,6 +25,7 @@ class ProductVariantPriceCalculator implements ProductVariantPriceCalculatorInte
 
         $channelPricing = $this->promotionProcessor->process($productVariant, $context['channel']);
 
+
         if (null === $channelPricing) {
             throw new MissingChannelConfigurationException(sprintf(
                 'Channel %s has no price defined for product variant %s',

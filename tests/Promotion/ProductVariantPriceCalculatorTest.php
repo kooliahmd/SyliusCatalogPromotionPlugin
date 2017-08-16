@@ -90,7 +90,7 @@ class ProductVariantPriceCalculatorTest extends TestCase
 
         $action = new PromotionAction();
         $action->setType('product_variant_percentage_discount');
-        $action->setConfiguration(['my-channel' => ['percentage' => 0.1]]);
+        $action->setConfiguration(['percentage' => 0.1]);
 
         $promotion = new Promotion();
         $promotion->addRule($rule);
