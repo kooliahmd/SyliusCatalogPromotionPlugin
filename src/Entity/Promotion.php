@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
+use Sylius\Component\Channel\Model\ChannelInterface;
 
 class Promotion implements ResourceInterface, CodeAwareInterface
 {
@@ -99,14 +100,33 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         return $this->endsAt;
     }
 
-    /**
-     * @return \Sylius\Component\Core\Model\ChannelPricingInterface[]
-     */
+
     public function getChannels()
     {
         return $this->channels;
     }
 
+
+    public function addChannel(ChannelInterface $channel)
+    {
+        if (!$this->hasChannel($channel)) {
+            $this->channels->add($channel);
+        }
+    }
+
+
+    public function removeChannel(ChannelInterface $channel)
+    {
+        if ($this->hasChannel($channel)) {
+            $this->channels->removeElement($channel);
+        }
+    }
+
+
+    public function hasChannel(ChannelInterface $channel)
+    {
+        return $this->channels->contains($channel);
+    }
 
     /**
      * @return mixed

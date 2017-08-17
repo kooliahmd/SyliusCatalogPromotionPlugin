@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 
 final class PromotionType extends AbstractResourceType
 {
@@ -52,6 +53,11 @@ final class PromotionType extends AbstractResourceType
             ->add('actions', PromotionActionCollectionType::class, [
                 'label' => 'sylius.form.promotion.actions',
                 'button_add_label' => 'sylius.form.promotion.add_action',
+            ])
+            ->add('channels', ChannelChoiceType::class, [
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'sylius.form.promotion.channels',
             ])
             ->addEventSubscriber(new AddCodeFormSubscriber());
 
