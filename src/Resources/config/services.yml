@@ -77,7 +77,3 @@ services:
     arguments: [%catalog-promotion.promotion_actions%]
     tags:
       - { name: form.type}
-
-  catalog-promotion.extra_loader:
-    class: SnakeTn\CatalogPromotion\Routing\ExtraLoader
-    tags: [{name: routing.loader}]
