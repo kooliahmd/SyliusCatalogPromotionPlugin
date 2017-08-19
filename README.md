@@ -31,12 +31,12 @@ class AppKernel extends Kernel
 ```
 ### 3) Update DB schema ###
 ```bash
-$ bin/consome doctrine:schema:update --force
+$ bin/console doctrine:schema:update --force
 
 ```
 
 ### 4) Cleare cache ###
 ```bash
-$ bin/consome cache:clear
+$ bin/console cache:clear
 
 ```
