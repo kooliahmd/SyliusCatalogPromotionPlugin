@@ -12,7 +12,7 @@
       "name": "Ahmed Kooli"
     }
   ],
-  "minimum-stability": "beta",
+  "minimum-stability": "dev",
   "require": {
     "sylius/sylius": "^1.0.0@beta",
     "webmozart/assert": "*",
