@@ -13,9 +13,8 @@
     }
   ],
   "require": {
-    "sylius/sylius": "^1.0@beta",
+    "sylius/sylius": "^1.0",
     "webmozart/assert": "*",
-    "symfony/symfony": "<3.3"
   },
   "config": {
     "bin-dir": "bin"
