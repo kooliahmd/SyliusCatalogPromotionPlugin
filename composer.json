@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "sylius/sylius": "^1.0@beta",
+    "sylius/sylius": "^1.0.0@beta",
     "webmozart/assert": "*"
   },
   "config": {
@@ -26,6 +26,6 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": ">=5"
+    "phpunit/phpunit": "^5.6"
   }
 }
