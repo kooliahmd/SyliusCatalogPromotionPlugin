@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "sylius/sylius": "^1.0",
+    "sylius/sylius": "*",
     "webmozart/assert": "*"
   },
   "config": {
