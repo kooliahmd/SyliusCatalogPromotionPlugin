@@ -24,8 +24,5 @@
       "SnakeTn\\CatalogPromotion\\": "src",
       "Tests\\SnakeTn\\CatalogPromotion\\": "tests"
     }
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^5.6"
   }
 }
