@@ -1,0 +1,6 @@
+resources:
+    app.catalog_promotion:
+        driver: doctrine/orm
+        classes:
+            model: SnakeTn\CatalogPromotion\Entity\Promotion
+            form: SnakeTn\CatalogPromotion\Form\Type\PromotionType
