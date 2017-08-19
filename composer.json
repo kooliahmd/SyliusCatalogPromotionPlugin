@@ -14,7 +14,7 @@
   ],
   "require": {
     "sylius/sylius": "^1.0",
-    "webmozart/assert": "*",
+    "webmozart/assert": "*"
   },
   "config": {
     "bin-dir": "bin"
