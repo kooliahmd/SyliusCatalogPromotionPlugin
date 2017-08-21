@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of catalog promotion plugin for Sylius.
  *
@@ -9,7 +10,6 @@
  */
 
 namespace SnakeTn\CatalogPromotion\Promotion\Action;
-
 
 use SnakeTn\CatalogPromotion\Model\ChannelPricing;
 use SnakeTn\CatalogPromotion\Entity\PromotionAction;
