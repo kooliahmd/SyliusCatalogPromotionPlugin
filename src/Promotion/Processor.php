@@ -26,7 +26,7 @@ use SnakeTn\CatalogPromotion\Entity\PromotionRule;
 class Processor
 {
     /**
-     * @var PromotionRepositoryInterface
+     * @var PromotionRepository
      */
     private $promotionRepository;
 
@@ -57,6 +57,13 @@ class Processor
 
         foreach ($this->promotionRepository->findActiveByChannel($channel) as $promotion) {
 
+            if ($promotion->isExclusive() && $this->isEligible($productVariant, $promotion)) {
+                $this->apply($channelPricing, $promotion);
+                return $channelPricing;
+            }
+        }
+
+        foreach ($this->promotionRepository->findActiveByChannel($channel) as $promotion) {
             if ($this->isEligible($productVariant, $promotion)) {
                 $this->apply($channelPricing, $promotion);
             }

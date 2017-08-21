@@ -12,11 +12,15 @@
 namespace SnakeTn\CatalogPromotion\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use SnakeTn\CatalogPromotion\Entity\Promotion;
 use Sylius\Component\Core\Model\ChannelInterface;
 
 class PromotionRepository extends EntityRepository
 {
-
+    /**
+     * @param ChannelInterface $channel
+     * @return Promotion[]
+     */
     public function findActiveByChannel(ChannelInterface $channel)
     {
         return $this->createQueryBuilder('o')

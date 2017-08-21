@@ -13,6 +13,7 @@ namespace Tests\SnakeTn\CatalogPromotion;
 
 use SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor;
 use SnakeTn\CatalogPromotion\Promotion\Applicator\ChannelPricingPromotionApplicator;
+use SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasProductRuleChecker;
 use SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker;
 use SnakeTn\CatalogPromotion\Promotion\Processor;
 use SnakeTn\CatalogPromotion\Promotion\ProductVariantPriceCalculator;
@@ -44,6 +45,7 @@ class ProductVariantPriceCalculatorTest extends TestCase
         $this->promotionRepository = $this->createMock(PromotionRepository::class);
         $processor = new Processor($this->promotionRepository);
         $processor->addRuleChecker('has_taxon', new HasTaxonRuleChecker());
+        $processor->addRuleChecker('has_product', new HasProductRuleChecker());
         $processor->addActionExecutor('product_variant_percentage_discount', new PercentageDiscountPromotionActionExecutor(new ChannelPricingPromotionApplicator()));
 
         $this->productVariantPriceCalculator = new ProductVariantPriceCalculator($processor);
@@ -63,6 +65,19 @@ class ProductVariantPriceCalculatorTest extends TestCase
         $finalPrice = $this->productVariantPriceCalculator->calculate($productVariant, ['channel' => $channel]);
         $this->assertEquals(90, $finalPrice);
 
+    }
+
+    public function test_process_case_eligible_to_one_exclusive_promotion_and_one_non_exclusive_promotion()
+    {
+        $productVariant = $this->getProductVariantHavingMyTaxon();
+        $productVariant->getProduct()->setCode('my-product');
+        $this->promotionRepository->method('findActiveByChannel')
+            ->willReturn([$this->getPromotion10PercentOnMyTaxon(),$this->getExclusivePromotion10PercentOnMyProduct()]);
+        $channel = new Channel();
+        $channel->setCode('my-channel');
+
+        $finalPrice = $this->productVariantPriceCalculator->calculate($productVariant, ['channel' => $channel]);
+        $this->assertEquals(90, $finalPrice);
     }
 
     /**
@@ -104,6 +119,23 @@ class ProductVariantPriceCalculatorTest extends TestCase
         $promotion = new Promotion();
         $promotion->addRule($rule);
         $promotion->addAction($action);
+        return $promotion;
+    }
+
+    private function getExclusivePromotion10PercentOnMyProduct(): Promotion
+    {
+        $rule = new PromotionRule();
+        $rule->setType('has_product');
+        $rule->setConfiguration(['product_codes' => ['my-product']]);
+
+        $action = new PromotionAction();
+        $action->setType('product_variant_percentage_discount');
+        $action->setConfiguration(['percentage' => 0.1]);
+
+        $promotion = new Promotion();
+        $promotion->addRule($rule);
+        $promotion->addAction($action);
+        $promotion->setExclusive(true);
         return $promotion;
     }
 }
