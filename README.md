@@ -29,6 +29,14 @@ class AppKernel extends Kernel
     }
 }
 ```
+
+### 3) Update routing configuration ###
+ Add the following routing config to your app/config/routing.yml file of your sylius project:
+ ```yaml
+catalog_promotion_admin:
+    prefix: /admin
+    resource: "@CatalogPromotionPlugin/Resources/config/routing.yml"
+ ```
 ### 3) Update DB schema ###
 ```bash
 $ bin/console doctrine:schema:update --force

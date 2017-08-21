@@ -24,7 +24,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     private $code;
     private $name;
     private $description;
-    private $priority;
+    private $priority = 0;
     private $exclusive;
     private $startsAt;
     private $endsAt;
