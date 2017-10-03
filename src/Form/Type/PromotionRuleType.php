@@ -9,16 +9,19 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace SnakeTn\CatalogPromotion\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Sylius\Bundle\PromotionBundle\Form\Type\AbstractConfigurablePromotionElementType;
+
 final class PromotionRuleType extends AbstractConfigurablePromotionElementType
 {
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options = [])
+    public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         parent::buildForm($builder, $options);
 

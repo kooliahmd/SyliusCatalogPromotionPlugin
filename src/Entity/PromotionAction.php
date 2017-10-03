@@ -9,10 +9,13 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace SnakeTn\CatalogPromotion\Entity;
 
 
 use Sylius\Component\Promotion\Model\ConfigurablePromotionElementInterface;
+use Sylius\Component\Promotion\Model\PromotionInterface;
 
 class PromotionAction implements ConfigurablePromotionElementInterface
 {
@@ -47,7 +50,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -63,7 +66,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @return array
      */
-    public function getConfiguration()
+    public function getConfiguration(): array
     {
         return $this->configuration;
     }
@@ -79,7 +82,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @return Promotion
      */
-    public function getPromotion()
+    public function getPromotion(): PromotionInterface
     {
         return $this->promotion;
     }

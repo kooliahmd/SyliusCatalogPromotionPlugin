@@ -13,6 +13,7 @@
     }
   ],
   "require": {
+    "php": "^7.1",
     "sylius/sylius": "^1.0@beta",
     "webmozart/assert": "*"
   },

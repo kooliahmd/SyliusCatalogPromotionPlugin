@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace SnakeTn\CatalogPromotion\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -72,7 +74,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function getCode()
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -191,7 +193,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $code
      */
-    public function setCode($code)
+    public function setCode(?string $code): void
     {
         $this->code = $code;
     }

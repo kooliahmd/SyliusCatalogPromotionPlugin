@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace SnakeTn\CatalogPromotion\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +21,7 @@ final class PromotionActionType extends AbstractConfigurablePromotionElementType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options = [])
+    public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         parent::buildForm($builder, $options);
 
