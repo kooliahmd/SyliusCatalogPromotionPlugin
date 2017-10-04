@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace SnakeTn\CatalogPromotion\Promotion;
 
 use Sylius\Component\Core\Calculator\ProductVariantPriceCalculatorInterface;
@@ -28,7 +30,7 @@ class ProductVariantPriceCalculator implements ProductVariantPriceCalculatorInte
         $this->promotionProcessor = $promotionProcessor;
     }
 
-    public function calculate(ProductVariantInterface $productVariant, array $context)
+    public function calculate(ProductVariantInterface $productVariant, array $context): int
     {
         Assert::keyExists($context, 'channel');
 

@@ -24,7 +24,7 @@ services:
     class: SnakeTn\CatalogPromotion\Promotion\Action\FixedDiscountPromotionActionExecutor
     arguments:
       - "@catalog-promotion.channel-pricing-promotion-applicator"
-    tags: [{name: catalog-promotion.action-executor, type: fixed_discount, label: Fixed discount, form-type: Sylius\Bundle\PromotionBundle\Form\Type\Action\ChannelBasedFixedDiscountConfigurationType}]
+    tags: [{name: catalog-promotion.action-executor, type: fixed_discount, label: Fixed discount, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Action\ChannelBasedFixedDiscountConfigurationType}]
 
   catalog-promotion.percentage-discount-action-executor:
     class: SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor
