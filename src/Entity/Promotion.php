@@ -14,21 +14,55 @@ declare(strict_types=1);
 namespace SnakeTn\CatalogPromotion\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Core\Model\PromotionInterface;
+use Sylius\Component\Promotion\Model\PromotionActionInterface;
+use Sylius\Component\Promotion\Model\PromotionCouponInterface;
+use Sylius\Component\Promotion\Model\PromotionRuleInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Channel\Model\ChannelInterface;
 
-class Promotion implements ResourceInterface, CodeAwareInterface
+/**
+ * Class Promotion
+ *
+ * @package SnakeTn\CatalogPromotion\Entity
+ */
+class Promotion implements ResourceInterface, CodeAwareInterface, PromotionInterface
 {
     use TimestampableTrait;
+    /**
+     * @var
+     */
     private $id;
+    /**
+     * @var
+     */
     private $code;
+    /**
+     * @var
+     */
     private $name;
+    /**
+     * @var
+     */
     private $description;
+    /**
+     * @var int
+     */
     private $priority = 0;
-    private $exclusive;
+    /**
+     * @var bool
+     */
+    private $exclusive = false;
+    /**
+     * @var
+     */
     private $startsAt;
+    /**
+     * @var
+     */
     private $endsAt;
 
     /**
@@ -46,6 +80,9 @@ class Promotion implements ResourceInterface, CodeAwareInterface
      */
     private $rules;
 
+    /**
+     * Promotion constructor.
+     */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -66,7 +103,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function getPriority()
+    public function getPriority(): int
     {
         return $this->priority;
     }
@@ -82,7 +119,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -90,7 +127,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function isExclusive()
+    public function isExclusive(): bool
     {
         return $this->exclusive;
     }
@@ -98,7 +135,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function getStartsAt()
+    public function getStartsAt(): ?\DateTimeInterface
     {
         return $this->startsAt;
     }
@@ -106,35 +143,47 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function getEndsAt()
+    public function getEndsAt(): ?\DateTimeInterface
     {
         return $this->endsAt;
     }
 
 
-    public function getChannels()
+    /**
+     * @return Collection
+     */
+    public function getChannels(): Collection
     {
         return $this->channels;
     }
 
 
-    public function addChannel(ChannelInterface $channel)
+    /**
+     * @param ChannelInterface $channel
+     */
+    public function addChannel(ChannelInterface $channel): void
     {
         if (!$this->hasChannel($channel)) {
             $this->channels->add($channel);
         }
     }
 
-
-    public function removeChannel(ChannelInterface $channel)
+    /**
+     * @param ChannelInterface $channel
+     */
+    public function removeChannel(ChannelInterface $channel): void
     {
         if ($this->hasChannel($channel)) {
             $this->channels->removeElement($channel);
         }
     }
 
-
-    public function hasChannel(ChannelInterface $channel)
+    /**
+     * @param ChannelInterface $channel
+     *
+     * @return bool
+     */
+    public function hasChannel(ChannelInterface $channel): bool
     {
         return $this->channels->contains($channel);
     }
@@ -142,33 +191,47 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return mixed
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
 
-    public function addAction(PromotionAction $action)
+    /**
+     * @param PromotionActionInterface $action
+     */
+    public function addAction(PromotionActionInterface $action): void
     {
         $this->actions->add($action);
         $action->setPromotion($this);
     }
 
 
-    public function removeAction(PromotionAction $action)
+    /**
+     * @param PromotionActionInterface $action
+     */
+    public function removeAction(PromotionActionInterface $action): void
     {
         $action->setPromotion(null);
         $this->actions->removeElement($action);
     }
 
-    public function addRule(PromotionRule $rule)
+    /**
+     * @param PromotionRuleInterface $rule
+     */
+    public function addRule(PromotionRuleInterface $rule): void
     {
-        $this->rules->add($rule);
+        if (!$this->rules->contains($rule)) {
+            $this->rules->add($rule);
+        }
         $rule->setPromotion($this);
     }
 
 
-    public function removeRule(PromotionRule $rule)
+    /**
+     * @param PromotionRuleInterface $rule
+     */
+    public function removeRule(PromotionRuleInterface $rule): void
     {
         $rule->setPromotion(null);
         $this->rules->removeElement($rule);
@@ -177,7 +240,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return ArrayCollection|PromotionAction[]
      */
-    public function getActions()
+    public function getActions(): Collection
     {
         return $this->actions;
     }
@@ -185,7 +248,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @return ArrayCollection|PromotionRule[]
      */
-    public function getRules()
+    public function getRules(): Collection
     {
         return $this->rules;
     }
@@ -201,7 +264,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
@@ -209,7 +272,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $description
      */
-    public function setDescription($description)
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
@@ -217,7 +280,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $exclusive
      */
-    public function setExclusive($exclusive)
+    public function setExclusive(?bool $exclusive): void
     {
         $this->exclusive = $exclusive;
     }
@@ -225,7 +288,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $startsAt
      */
-    public function setStartsAt($startsAt)
+    public function setStartsAt(?\DateTimeInterface $startsAt): void
     {
         $this->startsAt = $startsAt;
     }
@@ -233,7 +296,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $endsAt
      */
-    public function setEndsAt($endsAt)
+    public function setEndsAt(?\DateTimeInterface $endsAt): void
     {
         $this->endsAt = $endsAt;
     }
@@ -241,10 +304,151 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /**
      * @param mixed $priority
      */
-    public function setPriority($priority)
+    public function setPriority(?int $priority): void
     {
         $this->priority = $priority;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getUsageLimit(): ?int
+    {
+        // TODO: Implement getUsageLimit() method.
+    }
 
+    /**
+     * @param int|null $usageLimit
+     */
+    public function setUsageLimit(?int $usageLimit): void
+    {
+        // TODO: Implement setUsageLimit() method.
+    }
+
+    /**
+     * @return int
+     */
+    public function getUsed(): int
+    {
+        // TODO: Implement getUsed() method.
+    }
+
+    /**
+     * @param int $used
+     */
+    public function setUsed(int $used): void
+    {
+        // TODO: Implement setUsed() method.
+    }
+
+    /**
+     *
+     */
+    public function incrementUsed(): void
+    {
+        // TODO: Implement incrementUsed() method.
+    }
+
+    /**
+     *
+     */
+    public function decrementUsed(): void
+    {
+        // TODO: Implement decrementUsed() method.
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCouponBased(): bool
+    {
+        // TODO: Implement isCouponBased() method.
+    }
+
+    /**
+     * @param bool|null $couponBased
+     */
+    public function setCouponBased(?bool $couponBased): void
+    {
+        // TODO: Implement setCouponBased() method.
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCoupons(): Collection
+    {
+        // TODO: Implement getCoupons() method.
+    }
+
+    /**
+     * @param PromotionCouponInterface $coupon
+     *
+     * @return bool
+     */
+    public function hasCoupon(PromotionCouponInterface $coupon): bool
+    {
+        // TODO: Implement hasCoupon() method.
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasCoupons(): bool
+    {
+        // TODO: Implement hasCoupons() method.
+    }
+
+    /**
+     * @param PromotionCouponInterface $coupon
+     */
+    public function addCoupon(PromotionCouponInterface $coupon): void
+    {
+        // TODO: Implement addCoupon() method.
+    }
+
+    /**
+     * @param PromotionCouponInterface $coupon
+     */
+    public function removeCoupon(PromotionCouponInterface $coupon): void
+    {
+        // TODO: Implement removeCoupon() method.
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRules(): bool
+    {
+        // TODO: Implement hasRules() method.
+    }
+
+    /**
+     * @param PromotionRuleInterface $rule
+     *
+     * @return bool
+     */
+    public function hasRule(PromotionRuleInterface $rule): bool
+    {
+        // TODO: Implement hasRule() method.
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasActions(): bool
+    {
+        // TODO: Implement hasActions() method.
+    }
+
+    /**
+     * @param PromotionActionInterface $action
+     *
+     * @return bool
+     */
+    public function hasAction(PromotionActionInterface $action): bool
+    {
+        // TODO: Implement hasAction() method.
+    }
 }
+

@@ -19,6 +19,7 @@ class PromotionRepository extends EntityRepository
 {
     /**
      * @param ChannelInterface $channel
+     *
      * @return Promotion[]
      */
     public function findActiveByChannel(ChannelInterface $channel)
@@ -28,9 +29,18 @@ class PromotionRepository extends EntityRepository
             ->andWhere('o.endsAt IS NULL OR o.endsAt > :date')
             ->andWhere(':channel MEMBER OF o.channels')
             ->setParameter('channel', $channel)
-            ->setParameter('date',  new \DateTime())
+            ->setParameter('date', new \DateTime())
             ->addOrderBy('o.priority', 'DESC')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param $entity
+     */
+    public function add($entity)
+    {
+        $this->_em->persist($entity);
+        $this->_em->flush();
     }
 }

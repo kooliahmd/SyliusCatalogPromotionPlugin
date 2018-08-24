@@ -33,6 +33,8 @@ services:
     tags: [{name: catalog-promotion.action-executor, type: percentage_discount, label: Percentage discount, form-type: Sylius\Bundle\PromotionBundle\Form\Type\Action\PercentageDiscountConfigurationType}]
 
 
+  catalog-promotion.factory.promotion:
+    class: SnakeTn\CatalogPromotion\Factory\PromotionFactory
 
 
   catalog-promotion.registry_promotion_rule_checker:
