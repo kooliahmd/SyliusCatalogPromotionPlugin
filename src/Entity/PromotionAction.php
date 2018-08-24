@@ -15,9 +15,10 @@ namespace SnakeTn\CatalogPromotion\Entity;
 
 
 use Sylius\Component\Promotion\Model\ConfigurablePromotionElementInterface;
+use Sylius\Component\Promotion\Model\PromotionActionInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
 
-class PromotionAction implements ConfigurablePromotionElementInterface
+class PromotionAction implements PromotionActionInterface
 {
     /**
      * @var integer
@@ -32,7 +33,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @var array
      */
-    private $configuration;
+    private $configuration = [];
 
     /**
      * @var Promotion
@@ -50,7 +51,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -58,7 +59,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
@@ -74,7 +75,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @param array $configuration
      */
-    public function setConfiguration($configuration)
+    public function setConfiguration(array $configuration): void
     {
         $this->configuration = $configuration;
     }
@@ -90,10 +91,8 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /**
      * @param Promotion $promotion
      */
-    public function setPromotion(Promotion $promotion = null)
+    public function setPromotion(?PromotionInterface $promotion = null): void
     {
         $this->promotion = $promotion;
     }
-
-
 }
