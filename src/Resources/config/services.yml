@@ -68,12 +68,12 @@ services:
 
   catalog-promotion.form.type.promotion_rule_choice:
     class: SnakeTn\CatalogPromotion\Form\Type\PromotionRuleChoiceType
-    arguments: [%catalog-promotion.promotion_rules%]
+    arguments: ['%catalog-promotion.promotion_rules%']
     tags:
       - { name: form.type}
 
   catalog-promotion.form.type.promotion_action_choice:
     class: SnakeTn\CatalogPromotion\Form\Type\PromotionActionChoiceType
-    arguments: [%catalog-promotion.promotion_actions%]
+    arguments: ['%catalog-promotion.promotion_actions%']
     tags:
       - { name: form.type}
