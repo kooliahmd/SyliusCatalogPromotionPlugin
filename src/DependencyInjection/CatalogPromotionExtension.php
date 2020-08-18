@@ -37,6 +37,4 @@ class CatalogPromotionExtension extends Extension implements PrependExtensionInt
             Yaml::parse(file_get_contents(__DIR__ . '/../Resources/config/app/grid.yml'))
         );
     }
-
-
 }

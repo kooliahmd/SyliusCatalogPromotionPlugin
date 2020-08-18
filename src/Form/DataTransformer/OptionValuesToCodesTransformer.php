@@ -17,7 +17,6 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class OptionValuesToCodesTransformer implements DataTransformerInterface
 {
-
     public function __construct($optionValueRepository)
     {
         $this->optionValueRepository = $optionValueRepository;
@@ -38,10 +37,8 @@ class OptionValuesToCodesTransformer implements DataTransformerInterface
 
     public function reverseTransform($productOptionValues)
     {
-        return array_map(function (ProductOptionValueInterface $productOptionValue) {
+        return array_map(static function (ProductOptionValueInterface $productOptionValue) {
             return $productOptionValue->getCode();
         }, $productOptionValues->toArray());
     }
-
-
 }

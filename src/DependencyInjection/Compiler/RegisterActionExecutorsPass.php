@@ -31,5 +31,4 @@ class RegisterActionExecutorsPass implements CompilerPassInterface
         }
         $container->setParameter('catalog-promotion.promotion_actions', $promotionActionExecutorTypeToLabelMap);
     }
-
 }

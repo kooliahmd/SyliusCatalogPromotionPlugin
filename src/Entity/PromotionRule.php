@@ -18,81 +18,50 @@ use Sylius\Component\Promotion\Model\PromotionInterface;
 
 class PromotionRule implements ConfigurablePromotionElementInterface
 {
-    /**
-     * @var integer
-     */
+    /** @var int */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string|null */
     private $type;
 
-    /**
-     * @var array
-     */
+    /** @var array|null */
     private $configuration;
 
-    /**
-     * @var Promotion
-     */
+    /** @var Promotion */
     private $promotion;
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     */
-    public function setType($type)
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
 
-    /**
-     * @return array
-     */
-    public function getConfiguration(): array
+    public function getConfiguration(): ?array
     {
         return $this->configuration;
     }
 
-    /**
-     * @param array $configuration
-     */
-    public function setConfiguration($configuration)
+    public function setConfiguration(?array $configuration): void
     {
         $this->configuration = $configuration;
     }
 
-    /**
-     * @return Promotion
-     */
-    public function getPromotion(): PromotionInterface
+    public function getPromotion(): Promotion
     {
         return $this->promotion;
     }
 
-    /**
-     * @param Promotion $promotion
-     */
-    public function setPromotion(Promotion $promotion = null)
+    public function setPromotion(Promotion $promotion): void
     {
         $this->promotion = $promotion;
     }
-
-
 }

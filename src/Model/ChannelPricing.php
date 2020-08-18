@@ -12,18 +12,16 @@
 namespace SnakeTn\CatalogPromotion\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use SnakeTn\CatalogPromotion\Entity\Promotion;
 use Sylius\Component\Core\Model\ChannelPricing as BaseChannelPricing;
 
 class ChannelPricing extends BaseChannelPricing
 {
-    /**
-     * @var ArrayCollection|Promotion
-     */
+    /** @var Collection|Promotion */
     private $promotions;
-    /**
-     * @var int
-     */
+
+    /** @var int */
     private $promotionAmount = 0;
 
     public function __construct()
@@ -31,27 +29,18 @@ class ChannelPricing extends BaseChannelPricing
         $this->promotions = new ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
     public function getPromotionAmount(): int
     {
         return $this->promotionAmount;
     }
 
-    /**
-     * @param int $promotionAmount
-     */
-    public function setPromotionAmount(int $promotionAmount)
+    public function setPromotionAmount(int $promotionAmount): void
     {
         $this->promotionAmount = $promotionAmount;
     }
-
 
     public function getPromotionSubjectTotal()
     {
         return $this->getPrice() - $this->getPromotionAmount();
     }
-
-
 }

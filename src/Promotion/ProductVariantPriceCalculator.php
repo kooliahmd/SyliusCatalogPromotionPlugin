@@ -47,5 +47,4 @@ class ProductVariantPriceCalculator implements ProductVariantPriceCalculatorInte
 
         return $channelPricing->getPromotionSubjectTotal();
     }
-
 }

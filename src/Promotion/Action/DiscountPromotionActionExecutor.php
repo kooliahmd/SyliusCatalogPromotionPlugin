@@ -33,6 +33,4 @@ abstract class DiscountPromotionActionExecutor implements ActionExecutorInterfac
      * @param array $configuration
      */
     abstract protected function isConfigurationValid(array $configuration);
-
-
 }

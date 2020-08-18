@@ -10,30 +10,27 @@ services:
 
   catalog-promotion.has-taxon-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasTaxonRuleChecker
-    tags: [{name: catalog-promotion.rule-checker, type: has_taxon, label: Has at least one from taxons, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
+    tags: [{name: catalog-promotion.rule-checker, type: has_taxon, label: sylius.form.promotion.promotion_rule.has_at_least_one_from_taxons , form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\HasTaxonConfigurationType}]
 
   catalog-promotion.has-option-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasOptionRuleChecker
-    tags: [{name: catalog-promotion.rule-checker, type: has_option, label: Has at least one from option values, form-type: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueConfigurationType}]
+    tags: [{name: catalog-promotion.rule-checker, type: has_option, label: sylius.form.promotion.promotion_rule.contains_option, form-type: SnakeTn\CatalogPromotion\Form\Type\Rule\HasOptionValueConfigurationType}]
 
   catalog-promotion.has-product-rule-checker:
     class: SnakeTn\CatalogPromotion\Promotion\Checker\Rule\HasProductRuleChecker
-    tags: [{name: catalog-promotion.rule-checker, type: has_product, label: Product is one of, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\ContainsProductConfigurationType}]
+    tags: [{name: catalog-promotion.rule-checker, type: has_product, label: sylius.form.promotion.promotion_rule.contains_product, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Rule\ContainsProductConfigurationType}]
 
   catalog-promotion.fixed-discount-action-executor:
     class: SnakeTn\CatalogPromotion\Promotion\Action\FixedDiscountPromotionActionExecutor
     arguments:
       - "@catalog-promotion.channel-pricing-promotion-applicator"
-    tags: [{name: catalog-promotion.action-executor, type: fixed_discount, label: Fixed discount, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Action\ChannelBasedFixedDiscountConfigurationType}]
+    tags: [{name: catalog-promotion.action-executor, type: fixed_discount, label: sylius.form.promotion.promotion_action.fixed_discount, form-type: Sylius\Bundle\CoreBundle\Form\Type\Promotion\Action\ChannelBasedFixedDiscountConfigurationType}]
 
   catalog-promotion.percentage-discount-action-executor:
     class: SnakeTn\CatalogPromotion\Promotion\Action\PercentageDiscountPromotionActionExecutor
     arguments:
       - "@catalog-promotion.channel-pricing-promotion-applicator"
-    tags: [{name: catalog-promotion.action-executor, type: percentage_discount, label: Percentage discount, form-type: Sylius\Bundle\PromotionBundle\Form\Type\Action\PercentageDiscountConfigurationType}]
-
-
-
+    tags: [{name: catalog-promotion.action-executor, type: percentage_discount, label: sylius.form.promotion.promotion_action.percentage_discount, form-type: Sylius\Bundle\PromotionBundle\Form\Type\Action\PercentageDiscountConfigurationType}]
 
   catalog-promotion.registry_promotion_rule_checker:
     class: Sylius\Component\Registry\ServiceRegistry

@@ -25,9 +25,7 @@ class HasOptionRuleChecker implements RuleCheckerInterface
                 return true;
             }
         }
+
         return false;
-
     }
-
-
 }

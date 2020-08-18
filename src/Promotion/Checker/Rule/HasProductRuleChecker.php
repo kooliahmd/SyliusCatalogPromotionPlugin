@@ -21,6 +21,4 @@ class HasProductRuleChecker implements RuleCheckerInterface
     {
         return in_array($productVariant->getProduct()->getCode(), $rule->getConfiguration()['product_codes'], true);
     }
-
-
 }

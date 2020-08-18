@@ -121,6 +121,4 @@ class Processor
     {
         $this->actionExecutors[$ruleActionType] = $actionExecutor;
     }
-
-
 }

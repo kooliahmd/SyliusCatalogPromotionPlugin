@@ -30,5 +30,4 @@ class PromotionPublishCommand extends ContainerAwareCommand
     {
 //        $this->getContainer()->get('catalog-promotion.processor')->process();
     }
-
 }

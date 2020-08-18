@@ -31,5 +31,4 @@ class HasTaxonRuleChecker implements RuleCheckerInterface
         }
         return false;
     }
-
 }

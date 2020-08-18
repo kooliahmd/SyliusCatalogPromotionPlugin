@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace SnakeTn\CatalogPromotion\Form\Type\Rule;
 
 use SnakeTn\CatalogPromotion\Form\Type\OptionAutocompleteChoiceType;
@@ -31,12 +30,9 @@ class HasOptionValueConfigurationType extends AbstractType
 
         $builder
             ->add('options', OptionAutocompleteChoiceType::class, [
-                'label' => 'Option value',
+                'label' => 'sylius.form.options',
                 'multiple' => true,
             ]);
         $builder->get('options')->addModelTransformer($this->dataTransformer);
-
     }
-
-
 }

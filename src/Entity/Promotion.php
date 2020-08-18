@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace SnakeTn\CatalogPromotion\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Onatera\CoreBundle\Entity\DIYIngredient;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
@@ -22,28 +24,38 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 class Promotion implements ResourceInterface, CodeAwareInterface
 {
     use TimestampableTrait;
+
+    /** @var int */
     private $id;
+
+    /** @var string */
     private $code;
+
+    /** @var string */
     private $name;
+
+    /** @var string */
     private $description;
+
+    /** @var int */
     private $priority = 0;
+
+    /** @var bool */
     private $exclusive;
+
+    /** @var \DateTime */
     private $startsAt;
+
+    /** @var \DateTime */
     private $endsAt;
 
-    /**
-     * @var \Sylius\Component\Core\Model\ChannelPricingInterface[]
-     */
+    /** @var Collection|ChannelPricingInterface[] */
     private $channels;
 
-    /**
-     * @var ArrayCollection|PromotionAction[]
-     */
+    /** @var Collection|PromotionAction[] */
     private $actions;
 
-    /**
-     * @var ArrayCollection|PromotionRule[]
-     */
+    /** @var Collection|PromotionRule[] */
     private $rules;
 
     public function __construct()
@@ -54,111 +66,139 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         $this->actions = new ArrayCollection();
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPriority()
-    {
-        return $this->priority;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function isExclusive()
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function getPriority(): int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(int $priority): void
+    {
+        $this->priority = $priority;
+    }
+
+    public function isExclusive(): bool
     {
         return $this->exclusive;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStartsAt()
+    public function setExclusive(bool $exclusive): void
+    {
+        $this->exclusive = $exclusive;
+    }
+
+    public function getStartsAt(): \DateTime
     {
         return $this->startsAt;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEndsAt()
+    public function setStartsAt(\DateTime $startsAt): void
+    {
+        $this->startsAt = $startsAt;
+    }
+
+    public function getEndsAt(): \DateTime
     {
         return $this->endsAt;
     }
 
+    public function setEndsAt(\DateTime $endsAt): void
+    {
+        $this->endsAt = $endsAt;
+    }
 
-    public function getChannels()
+    public function getChannels(): Collection
     {
         return $this->channels;
     }
-
-
-    public function addChannel(ChannelInterface $channel)
-    {
-        if (!$this->hasChannel($channel)) {
-            $this->channels->add($channel);
-        }
-    }
-
-
-    public function removeChannel(ChannelInterface $channel)
-    {
-        if ($this->hasChannel($channel)) {
-            $this->channels->removeElement($channel);
-        }
-    }
-
 
     public function hasChannel(ChannelInterface $channel)
     {
         return $this->channels->contains($channel);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescription()
+    public function addChannel(ChannelInterface $channel): self
     {
-        return $this->description;
+        if (!$this->hasChannel($channel)) {
+            $this->channels[] = $channel;
+        }
+
+        return $this;
     }
 
-
-    public function addAction(PromotionAction $action)
+    public function removeChannel(ChannelInterface $channel): self
     {
-        $this->actions->add($action);
-        $action->setPromotion($this);
+        if (!$this->hasChannel($channel)) {
+            $this->channels->removeElement($channel);
+        }
+
+        return $this;
     }
 
-
-    public function removeAction(PromotionAction $action)
+    public function getActions(): Collection
     {
-        $action->setPromotion(null);
-        $this->actions->removeElement($action);
+        return $this->actions;
+    }
+
+    public function addAction(PromotionAction $action): self
+    {
+        if (!$this->actions->contains($action)) {
+            $this->actions[] = $action;
+            $action->setPromotion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(PromotionAction $action): self
+    {
+        if ($this->actions->contains($action)) {
+            $this->actions->removeElement($action);
+            if ($action->getPromotion() === $this) {
+                $action->setPromotion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRules(): Collection
+    {
+        return $this->rules;
     }
 
     public function addRule(PromotionRule $rule)
@@ -167,84 +207,9 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         $rule->setPromotion($this);
     }
 
-
     public function removeRule(PromotionRule $rule)
     {
         $rule->setPromotion(null);
         $this->rules->removeElement($rule);
     }
-
-    /**
-     * @return ArrayCollection|PromotionAction[]
-     */
-    public function getActions()
-    {
-        return $this->actions;
-    }
-
-    /**
-     * @return ArrayCollection|PromotionRule[]
-     */
-    public function getRules()
-    {
-        return $this->rules;
-    }
-
-    /**
-     * @param mixed $code
-     */
-    public function setCode(?string $code): void
-    {
-        $this->code = $code;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @param mixed $exclusive
-     */
-    public function setExclusive($exclusive)
-    {
-        $this->exclusive = $exclusive;
-    }
-
-    /**
-     * @param mixed $startsAt
-     */
-    public function setStartsAt($startsAt)
-    {
-        $this->startsAt = $startsAt;
-    }
-
-    /**
-     * @param mixed $endsAt
-     */
-    public function setEndsAt($endsAt)
-    {
-        $this->endsAt = $endsAt;
-    }
-
-    /**
-     * @param mixed $priority
-     */
-    public function setPriority($priority)
-    {
-        $this->priority = $priority;
-    }
-
-
 }

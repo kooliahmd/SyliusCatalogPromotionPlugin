@@ -22,6 +22,6 @@ class AdminMenuListener
     {
         $event->getMenu()->getChild('marketing')
             ->addChild('catalog_promotions', ['route' => 'app_admin_catalog_promotion_index'])
-            ->setLabel('Catalog promotion');
+            ->setLabel('sylius.ui.catalog_promotions');
     }
 }

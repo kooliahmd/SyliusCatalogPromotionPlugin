@@ -30,12 +30,10 @@ class HasProductConfigurationType extends AbstractType
 
         $builder
             ->add('products', OptionAutocompleteChoiceType::class, [
-                'label' => 'Products',
+                'label' => 'sylius.ui.products',
                 'multiple' => true,
             ]);
         $builder->get('products')->addModelTransformer($this->dataTransformer);
 
     }
-
-
 }

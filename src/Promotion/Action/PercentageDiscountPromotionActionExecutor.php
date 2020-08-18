@@ -58,5 +58,4 @@ class PercentageDiscountPromotionActionExecutor extends DiscountPromotionActionE
     {
         return (int)round($promotionSubjectTotal * $percentage);
     }
-
 }

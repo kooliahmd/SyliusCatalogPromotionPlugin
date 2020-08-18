@@ -64,5 +64,4 @@ class FixedDiscountPromotionActionExecutor extends DiscountPromotionActionExecut
     {
         return min($promotionSubjectTotal, $targetPromotionAmount);
     }
-
 }
